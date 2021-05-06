@@ -7,8 +7,6 @@ import {
 	Spinner,
 	Text,
 } from "@chakra-ui/react";
-import axios from 'axios';
-
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -27,7 +25,7 @@ export const Products = () => {
 			try {
 				const { data } = await instance.get("/products");
 				// console.log(res.data.data.products);
-				setProducts(res.data.data.products);
+				setProducts(data.data.products);
 				setLoader(false);
 			} catch (err) {
 				console.log(err);
