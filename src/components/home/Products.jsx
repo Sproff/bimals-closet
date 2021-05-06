@@ -16,39 +16,25 @@ import { Link } from "react-router-dom";
 import { BsHeartFill } from "react-icons/bs";
 import { RiStarSFill } from "react-icons/ri";
 // import { ProductDetails } from "../../pages/ProductDetails";
-// import instance from "../../queries/axios.config";
+import instance from "../../queries/axios.config";
 
 export const Products = () => {
 	const [products, setProducts] = useState([]);
 	const [loader, setLoader] = useState(true);
 
-	// useEffect(() => {
-	// 	const getAllProducts = async () => {
-	// 		try {
-	// 			const { data } = await instance.get("/products");
-	// 			console.log(data);
-	// 			setProducts(data);
-	// 			setLoader(false);
-	// 		} catch (err) {
-	// 			console.log(err);
-	// 		}
-  //   };
-	// 	// return getAllProducts();
-  //   getAllProducts();
-	// }, []);
-
-  useEffect(() => {
-    const APP_URL = 'https://bimals-closet-api.herokuapp.com/products';
-
-    axios
-      .get(APP_URL)
-      .then((res) => {
-        console.log(res.data.data.products);
-        setProducts(res.data.data.products);
-        setLoader(false);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+	useEffect(() => {
+		const getAllProducts = async () => {
+			try {
+				const { data } = await instance.get("/products");
+				// console.log(res.data.data.products);
+				setProducts(res.data.data.products);
+				setLoader(false);
+			} catch (err) {
+				console.log(err);
+			}
+    };
+    getAllProducts();
+	}, []);
 
 	if (loader) {
 		return (
