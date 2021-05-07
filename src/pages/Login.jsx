@@ -51,7 +51,7 @@ export const Login = () => {
 				</Text>
         <Box as="form"
 					id="first-name"
-					isRequired
+					isrequired
 					onSubmit={handleSubmit(handleLogin)}
 				>
 					<FormLabel>Email Address</FormLabel>

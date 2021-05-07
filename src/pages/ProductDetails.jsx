@@ -32,9 +32,10 @@ export const ProductDetails = () => {
 				// console.log(data.data.product);
 				setProduct(data.data.product);
 				setLoader(false);
-			} catch (err) {
-				console.log(err);
+			} catch (error) {
+				console.log(error);
 				setError(true);
+				setLoader(false);
 			}
 		};
 		getParticularProduct();
@@ -53,11 +54,11 @@ export const ProductDetails = () => {
 	}
 
 	if (error) {
-		return <Text>Oops. Page not found</Text>;
+    return <Text>Product does not exist</Text>;
 	}
 
 	const addToCart = () => {
-		const data = updateCart(cart, product, 1);
+    const data = updateCart(cart, product, 1);
 		setCart(data);
 	};
 
@@ -91,7 +92,7 @@ export const ProductDetails = () => {
 						<Text>{product.desc}</Text>
 					</Box>
 					<Box w="100%">
-						<Link to="/cart" onClick={() => addToCart()}>
+						<Link onClick={() => addToCart()}>
 							<Button
 								bg="#000"
 								color="#fff"

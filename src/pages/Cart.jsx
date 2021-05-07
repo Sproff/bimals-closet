@@ -22,7 +22,7 @@ import { StoreContext } from "../contexts/StoreContext";
 import { updateCart, totalProductsPrice } from "../services/cart";
 
 export const Cart = () => {
-	const [cart, setCart] = useContext(StoreContext);
+  const [cart, setCart] = useContext(StoreContext);
 	return (
 		<Box>
 			<Header />
@@ -40,35 +40,43 @@ export const Cart = () => {
 				{cart.map((item) => {
 					return (
 						<>
-							<HStack
+              <HStack
+								key={item.product.slug}
+                mb="2rem"
 								mx={["1rem", "1rem", "4rem", "8rem"]}
 								border="2px solid #f1f1f1"
 								borderRadius="10px"
-								key={item.id}
 							>
 								<Box borderRadius="10px" overflow="hidden">
 									<Image
 										objectFit="cover"
 										w="350px"
 										h="250px"
-										src={item.image}
+										src={item.product.image}
 										alt="Product Image"
 									/>
 								</Box>
 
 								<Box>
 									<Box>
-										<Text fontSize={["1rem", "1rem", "1.2rem", "1.2rem"]}>
-											Sleeveless Gown
-											<br />
-											<Text
+                    <Text
+                      fontWeight="600"
+                      fontSize={["1rem", "1rem", "1.2rem", "1.2rem"]}
+                    >
+											{item.product.name}
+                    </Text>
+										<Text
 												color="gray.500"
 												fontSize={[".9rem", ".9rem", "1rem", "1rem"]}
-											/>
-											$1
-											<br />
+											>
+											${item.product.price}
+                    </Text>
+                    <Text
+                      fontWeight="600"
+                      fontSize={["1rem", "1rem", "1.2rem", "1.2rem"]}
+                    >
 											QTY - {item.itemCount}
-										</Text>
+                    </Text>
 									</Box>
 
 									<HStack mt=".5rem">
@@ -96,60 +104,60 @@ export const Cart = () => {
 									</HStack>
 								</Box>
 							</HStack>
-
-							<Box
-								mt="2rem"
-								mx={["1rem", "1rem", "4rem", "8rem"]}
-								border="2px solid #f1f1f1"
-								borderRadius="10px"
-								p="1rem"
-							>
-								<HStack textAlign="center">
-									<Box w="100%">
-										<Text>Total Items</Text>
-										<Text>{cart.length}</Text>
-									</Box>
-									<Box w="100%">
-										<Text>Total Prices</Text>
-										<Text>${totalProductsPrice(cart)}</Text>
-									</Box>
-								</HStack>
-
-								<Divider />
-
-								<HStack textAlign="center">
-									<Box w="100%">
-										<Link to="/checkout">
-											<Button
-												bg="#000"
-												color="#fff"
-												borderRadius="10px"
-												mt="1rem"
-												_hover={{ background: "#000", opacity: "0.8" }}
-												_focus={{ boxShadow: "none" }}
-											>
-												Checkout
-											</Button>
-										</Link>
-									</Box>
-									<Box w="100%">
-										<Button
-											onClick={() => setCart([])}
-											bg="#000"
-											color="#fff"
-											borderRdius="10px"
-											mt="1rem"
-											_hover={{ background: "#000", opacity: "0.8" }}
-											_focus={{ boxShadow: "none" }}
-										>
-											Clear
-										</Button>
-									</Box>
-								</HStack>
-							</Box>
 						</>
 					);
 				})}
+
+				<Box
+					mt="2rem"
+					mx={["1rem", "1rem", "4rem", "8rem"]}
+					border="2px solid #f1f1f1"
+					borderRadius="10px"
+					p="1rem"
+				>
+					<HStack textAlign="center">
+						<Box w="100%">
+							<Text>Total Items</Text>
+							<Text>{cart.length}</Text>
+						</Box>
+						<Box w="100%">
+							<Text>Total Prices</Text>
+							<Text>${totalProductsPrice(cart)}</Text>
+						</Box>
+					</HStack>
+
+					<Divider />
+
+					<HStack textAlign="center">
+						<Box w="100%">
+							<Link to="/checkout">
+								<Button
+									bg="#000"
+									color="#fff"
+									borderRadius="10px"
+									mt="1rem"
+									_hover={{ background: "#000", opacity: "0.8" }}
+									_focus={{ boxShadow: "none" }}
+								>
+									Checkout
+								</Button>
+							</Link>
+						</Box>
+						<Box w="100%">
+							<Button
+								onClick={() => setCart([])}
+								bg="#000"
+								color="#fff"
+								borderRadius="10px"
+								mt="1rem"
+								_hover={{ background: "#000", opacity: "0.8" }}
+								_focus={{ boxShadow: "none" }}
+							>
+								Clear
+							</Button>
+						</Box>
+					</HStack>
+				</Box>
 
 				<Footer />
 			</Container>

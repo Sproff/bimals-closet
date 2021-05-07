@@ -55,7 +55,6 @@ export const SignUp = () => {
           as="form"
 					onSubmit={handleSubmit(handleSignup)}
 					id="first-name"
-					isRequired
 				>
 					<FormLabel>Full name</FormLabel>
 					<Input
