@@ -12,8 +12,8 @@ code {
     monospace;
 }
 
-.Toastify__toast-container--top-right {
-  margin-top: 3rem;
+.Toastify__toast-container {
+  z-index: 999999;
 }
 
 .paystack-button {
@@ -30,6 +30,10 @@ code {
 .paystack-button:hover {
   background: #000;
   opacity: 0.8;
+}
+
+.paystack-button:focus {
+  box-shadow: none;
 }
 
 input:-webkit-autofill,

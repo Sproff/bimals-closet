@@ -28,8 +28,8 @@ export const Products = () => {
 			} catch (err) {
 				console.log(err);
 			}
-    };
-    getAllProducts();
+		};
+		getAllProducts();
 	}, []);
 
 	if (loader) {
@@ -46,41 +46,41 @@ export const Products = () => {
 
 	return (
 		<SimpleGrid columns={["2", "2", "3", "5"]} mt="2rem" spacing="20px">
-      {products.map((product) => (
-        <Link to={`product/${product.slug}`} key={product.slug}>
-        <Box
-          bg="#fff"
-          height="100%"
-          borderRadius="10px"
-          overflow="hidden"
-          position="relative"
-          boxShadow="sm"
-        >
-            <img src={product.image}/>
-          <Box pos="absolute" top="0" right="0" m="1rem">
-            <BsHeartFill color="red" />
-          </Box>
-          <Box p=".5rem">
-            <HStack>
-              <Text fontWeight="500" fontSize="1rem">
-                {product.name}
-              </Text>
-              <Spacer />
-              <Text color="gray.500" fontSize=".9rem">
-                ${product.price}
-              </Text>
-            </HStack>
-            <Flex>
-              <RiStarSFill color="goldenrod" />
-              <RiStarSFill color="goldenrod" />
-              <RiStarSFill color="goldenrod" />
-              <RiStarSFill color="goldenrod" />
-              <RiStarSFill color="goldenrod" />
-            </Flex>
-          </Box>
-        </Box>
-      </Link>
-      ))}
+			{products.map((product) => (
+				<Link to={`product/${product.slug}`} key={product.slug}>
+					<Box
+						bg="#fff"
+						height="100%"
+						borderRadius="10px"
+						overflow="hidden"
+						position="relative"
+						boxShadow="sm"
+					>
+						<img src={product.image} />
+						<Box pos="absolute" top="0" right="0" m="1rem">
+							<BsHeartFill color="red" />
+						</Box>
+						<Box p=".5rem">
+							<HStack>
+								<Text fontWeight="500" fontSize="1rem">
+									{product.name}
+								</Text>
+								<Spacer />
+								<Text color="gray.500" fontSize=".9rem">
+									${product.price}
+								</Text>
+							</HStack>
+							<Flex>
+								<RiStarSFill color="goldenrod" />
+								<RiStarSFill color="goldenrod" />
+								<RiStarSFill color="goldenrod" />
+								<RiStarSFill color="goldenrod" />
+								<RiStarSFill color="goldenrod" />
+							</Flex>
+						</Box>
+					</Box>
+				</Link>
+			))}
 		</SimpleGrid>
 	);
 };

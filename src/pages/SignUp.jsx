@@ -95,7 +95,8 @@ export const SignUp = () => {
 						cursor="pointer"
 						boxShadow="none"
             width="100%"
-						_hover={{ background: "#000", opacity: "0.8" }}
+            _hover={{ background: "#000", opacity: "0.8" }}
+            _focus={{ boxShadow: "none" }}
 						isLoading={loading}
 					>
 						Sign Up

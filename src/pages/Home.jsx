@@ -30,7 +30,14 @@ export const Home = () => {
 					<Text color="gray.500" textAlign="center">
 						Last chance to take advantage of our discounts!
 					</Text>
-					<Button bg="#000" color="#fff" borderRadius="10px" mt="1rem">
+					<Button
+						bg="#000"
+						color="#fff"
+						borderRadius="10px"
+						mt="1rem"
+						_hover={{ background: "#000", opacity: "0.8" }}
+						_focus={{ boxShadow: "none" }}
+					>
 						Discover Sales
 					</Button>
 				</Box>

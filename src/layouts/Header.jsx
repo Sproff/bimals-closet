@@ -5,26 +5,28 @@ import { Box, Button, HStack, Text, Spacer, Tag } from "@chakra-ui/react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { TiShoppingCart } from "react-icons/ti";
 import { StoreContext } from "../contexts/StoreContext";
+import { AuthContext } from "../contexts/auth";
 
 export const Header = () => {
-  const [cartData] = useContext(StoreContext);
+	const [cartData] = useContext(StoreContext);
+	const { authState } = useContext(AuthContext);
 
 	return (
 		<Box>
 			<HStack
-        px="1rem"
+				px="1rem"
 				h="50px"
 				alignItems="center"
 				position="fixed"
-        top="0"
+				top="0"
 				w="100%"
 				bgColor="#fff"
-				zIndex="9999"
+				zIndex="99"
 				borderBottom="1px solid rgba(0, 0, 0, 0.2)"
 			>
-        <Box
-          display={["none", "none", "flex", "flex"]}
-					w="100%"
+				<Box
+					display={["none", "none", "flex", "flex"]}
+					// w="100%"
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
 					cursor="pointer"
 				>
@@ -47,35 +49,59 @@ export const Header = () => {
 				</Box>
 				<Spacer />
 				<Box
-					w={["0%", "0%", "10%", "50%"]}
+					// w={["0%", "0%", "50%", "50%"]}
 					display={["none", "none", "flex", "flex"]}
 					justifyContent="flex-end"
 				>
-          <Link to="/login">
-            <Button bg="#000" fontSize={["1rem", "1rem", "1rem", "1rem"]} color="#fff" borderRadius="10px" px="2rem">
-              Log In
-            </Button>
-          </Link>
+					{authState !== "" ? (
+						""
+					) : (
+						<Link to="/login">
+							<Button
+								bg="#000"
+								fontSize={["1rem", "1rem", "1rem", "1rem"]}
+								color="#fff"
+								borderRadius="10px"
+                px="2rem"
+                _hover={{ background: "#000", opacity: "0.8" }}
+                _focus={{ boxShadow: "none" }}
+							>
+								Log In
+							</Button>
+						</Link>
+					)}
 				</Box>
 				<Box
-					w={["20%", "40%", "20%", "20%"]}
+					// w="100%"
 					display={["none", "none", "flex", "flex"]}
 					justifyContent="flex-end"
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
 					cursor="pointer"
-        >
-          <Link to="/cart">
-            <Tag bg="#000" color="#fff" position="absolute" right="10px" borderRadius="50%" fontSize=".6rem" p=".1rem .3rem" minHeight="0" minWidth="0">{cartData.length}</Tag>
+				>
+					<Link to="/cart">
+						<Tag
+							bg="#000"
+							color="#fff"
+							position="absolute"
+							right="10px"
+							borderRadius="50%"
+							fontSize=".6rem"
+							p=".1rem .3rem"
+							minHeight="0"
+							minWidth="0"
+						>
+							{cartData.length}
+						</Tag>
 						<TiShoppingCart />
 					</Link>
 				</Box>
 			</HStack>
 
-      <HStack
-        position="fixed"
-        bottom="0"
-        display={["flex", "flex", "none", "none"]}
-        px="1rem"
+			<HStack
+				position="fixed"
+				bottom="0"
+				display={["flex", "flex", "none", "none"]}
+				px="1rem"
 				h="50px"
 				alignItems="center"
 				w="100%"
@@ -84,7 +110,7 @@ export const Header = () => {
 				borderBottom="1px solid rgba(0, 0, 0, 0.2)"
 			>
 				<Box
-					w="100%"
+					// w="100%"
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
 					cursor="pointer"
 				>
@@ -92,41 +118,54 @@ export const Header = () => {
 						<FaRegUserCircle fontSize="1.5rem" />
 					</Link>
 				</Box>
-        <Spacer />
-        <Box
-          w="100%"
-          display="flex"
-          justifyContent="center"
+				<Spacer />
+				<Box
+					w="100%"
+					display="flex"
+					justifyContent="center"
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
 					cursor="pointer"
 				>
-					<Link to="/login">
-            <Button bg="#000" fontSize={["1rem", "1rem", "1rem", "1rem"]} color="#fff" borderRadius="10px" px="4rem">
-              Log In
-            </Button>
-          </Link>
+					{authState !== "" ? (
+						""
+					) : (
+						<Link to="/login">
+							<Button
+								bg="#000"
+								fontSize={["1rem", "1rem", "1rem", "1rem"]}
+								color="#fff"
+								borderRadius="10px"
+                px="4rem"
+                _hover={{ background: "#000", opacity: "0.8" }}
+                _focus={{ boxShadow: "none" }}
+							>
+								Log In
+							</Button>
+						</Link>
+					)}
 				</Box>
 				<Spacer />
 				<Box
-					w={["0%", "0%", "10%", "50%"]}
-					display={["none", "none", "flex", "flex"]}
-					justifyContent="flex-end"
-				>
-          <Link to="/login">
-            <Button bg="#000" fontSize={["1rem", "1rem", "1rem", "1rem"]} color="#fff" borderRadius="10px" px="1rem">
-              Login
-            </Button>
-          </Link>
-				</Box>
-				<Box
-					w="100%"
+					// w="100%"
 					display="flex"
 					justifyContent="flex-end"
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
 					cursor="pointer"
 				>
-          <Link to="/cart">
-            <Tag bg="#000" color="#fff" position="absolute" right="10px" borderRadius="50%" fontSize=".6rem" p=".1rem .3rem" minHeight="0" minWidth="0">{cartData.length}</Tag>
+					<Link to="/cart">
+						<Tag
+							bg="#000"
+							color="#fff"
+							position="absolute"
+							right="10px"
+							borderRadius="50%"
+							fontSize=".6rem"
+							p=".1rem .3rem"
+							minHeight="0"
+							minWidth="0"
+						>
+							{cartData.length}
+						</Tag>
 						<TiShoppingCart />
 					</Link>
 				</Box>
