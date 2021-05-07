@@ -4,19 +4,21 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Home } from "../pages/Home"
-import { Cart } from "../pages/Cart"
-import { Checkout } from "../pages/Checkout"
-import { SignUp } from "../pages/SignUp"
-import { Login } from "../pages/Login"
-import { ProductDetails } from "../pages/ProductDetails";
-import { Profile } from "../pages/Profile";
+import { ScrollToTop } from "../pages/ScrollToTop"
 import { AuthContextProvider } from "../contexts/auth"
 import { PrivateRoute } from "../components/auth/PrivateRoute";
+import { Checkout } from "../pages/Checkout"
+import { ProductDetails } from "../pages/ProductDetails";
+import { Cart } from "../pages/Cart"
+import { Profile } from "../pages/Profile";
+import { SignUp } from "../pages/SignUp"
+import { Login } from "../pages/Login"
+import { Home } from "../pages/Home"
 
 export const Routes = () => {
 	return (
     <Router>
+      <ScrollToTop />
 			<ChakraProvider>
         <ToastContainer />
         <AuthContextProvider>
