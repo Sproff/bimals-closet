@@ -8,26 +8,29 @@ import {
 	Text,
 } from "@chakra-ui/react";
 
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { signup } from "../queries/auth";
 import { toast } from "react-toastify";
-import { AuthContext, SIGNUP } from "../contexts/auth";
+import { AuthContext } from "../contexts/auth";
 
 export const SignUp = () => {
 	const { register, handleSubmit } = useForm();
 	const [loading, setLoading] = useState(false);
-	const { authState, dispatch } = useContext(AuthContext);
+	const { authState } = useContext(AuthContext);
+
+  const history = useHistory()
 
 	if (authState) {
-		return <Redirect to="/login" />;
+		return <Redirect to="/" />;
 	}
 
 	const handleSignup = async (data) => {
 		try {
 			setLoading(true);
 			const res = await signup(data);
-			dispatch({ type: SIGNUP, payload: res.data });
+			// dispatch({ type: SIGNUP, payload: res.data });
+      history.push("/login")
 			setLoading(false);
 			toast.success(res.message);
 		} catch (error) {

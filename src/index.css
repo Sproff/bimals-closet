@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.Toastify__toast-container--top-right {
+  margin-top: 3rem;
+}
+
 .paystack-button {
   background: #000;
   color: #fff;

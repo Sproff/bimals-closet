@@ -21,21 +21,21 @@ export const Routes = () => {
         <ToastContainer />
         <AuthContextProvider>
           <Switch>
-            <Route exact path="/">
-              <Home />
+            <PrivateRoute path="/checkout">
+              <Checkout />
+            </PrivateRoute>
+
+            <Route path="/product/:slug">
+              <ProductDetails />
             </Route>
 
             <Route path="/cart">
               <Cart />
             </Route>
 
-            <Route path="/product-details">
-              <ProductDetails />
+            <Route path="/profile">
+              <Profile />
             </Route>
-
-            <PrivateRoute path="/checkout">
-              <Checkout />
-            </PrivateRoute>
 
             <Route path="/sign-up">
               <SignUp />
@@ -45,8 +45,8 @@ export const Routes = () => {
               <Login />
             </Route>
 
-            <Route path="/profile">
-              <Profile />
+            <Route exact path="/">
+              <Home />
             </Route>
           </Switch>
         </AuthContextProvider>

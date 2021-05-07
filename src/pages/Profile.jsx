@@ -30,47 +30,48 @@ export const Profile = () => {
 	};
 
   return (
-    <Container maxW="container.xl">
+    <Box>
       <Header />
+      <Container maxW="container.xl">
+        <Box my="5rem">
+          <Text mb="1rem" fontSie="1.2rem" fontWeight="500">Profile Settings</Text>
+          {logout !== "" ? (
+            <Button
+              type="submit"
+              bg="#000"
+              color="#fff"
+              borderRadius="10px"
+              mt="1rem"
+              cursor="pointer"
+              boxShadow="none"
+              _hover={{ background: "#000", opacity: "0.8" }}
+              isLoading={loading}
+              onClick={logout}
+            >
+              Log Out
+            </Button>
 
-      <Box my="5rem">
-        <Text mb="1rem" fontSie="1.2rem" fontWeight="500">Profile Settings</Text>
-        {logout !== "" ? (
-          <Button
-            type="submit"
-            bg="#000"
-            color="#fff"
-            borderRadius="10px"
-            mt="1rem"
-            cursor="pointer"
-            boxShadow="none"
-            _hover={{ background: "#000", opacity: "0.8" }}
-            isLoading={loading}
-            onClick={logout}
-          >
-            Log Out
-          </Button>
-
-        ) : (
-          <Button
-            type="submit"
-            bg="#000"
-            color="#fff"
-            borderRadius="10px"
-            mt="1rem"
-            cursor="pointer"
-            boxShadow="none"
-            _hover={{ background: "#000", opacity: "0.8" }}
-            isLoading={loading}
-            onClick={logout}
-          >
-            Log In
-          </Button>
-        )}
+          ) : (
+            <Button
+              type="submit"
+              bg="#000"
+              color="#fff"
+              borderRadius="10px"
+              mt="1rem"
+              cursor="pointer"
+              boxShadow="none"
+              _hover={{ background: "#000", opacity: "0.8" }}
+              isLoading={loading}
+              onClick={logout}
+            >
+              Log In
+            </Button>
+          )}
+          
+        </Box>
         
+        <Footer />
+        </Container>
       </Box>
-      
-      <Footer />
-    </Container>
   )
 }

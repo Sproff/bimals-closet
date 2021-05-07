@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 
 import { BsHeartFill } from "react-icons/bs";
 import { RiStarSFill } from "react-icons/ri";
-// import { ProductDetails } from "../../pages/ProductDetails";
 import instance from "../../queries/axios.config";
 
 export const Products = () => {
@@ -24,7 +23,6 @@ export const Products = () => {
 		const getAllProducts = async () => {
 			try {
 				const { data } = await instance.get("/products");
-				// console.log(res.data.data.products);
 				setProducts(data.data.products);
 				setLoader(false);
 			} catch (err) {
@@ -48,7 +46,7 @@ export const Products = () => {
 
 	return (
 		<SimpleGrid columns={["2", "2", "3", "5"]} mt="2rem" spacing="20px">
-      {products.length > 0 && products.map((product) => (
+      {products.map((product) => (
         <Link to={`product/${product.slug}`} key={product.slug}>
         <Box
           bg="#fff"

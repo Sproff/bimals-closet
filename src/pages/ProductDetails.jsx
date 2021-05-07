@@ -1,52 +1,96 @@
 import { Image } from "@chakra-ui/image"
-import { Box, Button, Container, Text } from "@chakra-ui/react"
+import { Box, Button, Container, HStack, Spinner, Text } from "@chakra-ui/react"
 
-import React from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-
-// import slug from "../components/home/Products"
-
 
 import { Footer } from "../layouts/Footer"
 import { Header } from "../layouts/Header"
-import ProductImage from "../assets/images/pr6.jpg"
+import instance from "../queries/axios.config";
+import { StoreContext } from "../contexts/StoreContext"
+import { updateCart } from "../services/cart"
+
 
 export const ProductDetails = () => {
+  const [product, setProduct] = useState({});
+  const [loader, setLoader] = useState(true);
+  const [error, setError] = useState(false);
+  const [cart, setCart] = useContext(StoreContext);
+  
   const { slug } = useParams()
-  console.log(slug);
+
+  useEffect(() => {
+		const getParticularProduct = async () => {
+			try {
+				const { data } = await instance.get(`/product/${slug}`);
+				// console.log(data.data.product);
+				setProduct(data.data.product);
+				setLoader(false);
+			} catch (err) {
+				console.log(err);
+				setError(true);
+
+			}
+    };
+    getParticularProduct();
+	}, []);
+
+  if (loader) {
+		return (
+			<Spinner
+				thickness="4px"
+				speed="0.65s"
+				mt="2rem"
+				borderColor="#000"
+				size="md"
+			/>
+		);
+	}
+
+  if (error) {
+		return (
+			<Text>Oops. Page not found</Text>
+		);
+	}
+
+  const addToCart = () => {
+    const data = updateCart(cart, product, 1);
+    setCart(data);
+  };
 
   return (
-    <Container maxW="container.xl">
+    <Box>
       <Header />
-
-      <Container my="4rem">
-        <Box>
+      <Container maxW="container.xl" my="4rem">
+        <Box mx="8rem">
           <Box>
             <Image
               boxSize="100px"
               objectFit="cover"
               w="100%"
-              h="250px"
-              src={ProductImage}
+              h="300px"
+              src={product.image}
               alt="Banner Image"
               backgroundSize= "cover"
               backgroundPosition="center"
             />
-        </Box>
+          </Box>
 
           <Box>
-            <Text>Lorem</Text>
-            <Text>Lorem</Text>
+            <HStack>
+              <Text fontSize="1.2rem" fontWeight="600">{product.name}</Text>
+              <Text color="gray.500" fontSize=".9rem">${product.price}</Text>
+            </HStack>
+            <Text>{product.desc}</Text>
           </Box>
           <Box w="100%">
-            <Link to="/cart">
+            <Link to="/cart" onClick={() => addToCart()}>
               <Button bg="#000" color="#fff" borderRadius="10px" mt="1rem">Add to Cart</Button>
             </Link>
           </Box>
         </Box>
-      </Container>
-
       <Footer />
-    </Container>
+      </Container>
+    </Box>
   )
 }

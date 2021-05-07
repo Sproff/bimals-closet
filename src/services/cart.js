@@ -4,11 +4,11 @@ export const updateCart = (selectedProducts, product, itemCount) => {
   const products = [...selectedProducts];
 
   const productIndex = products.findIndex(
-    (productObject) => productObject.id === (product.id || product.id2)
+    (productObject) => productObject.id === product.id
   );
 
   if (productIndex === -1) {
-    products.push({id: product.id || product.id2, product, itemCount});
+    products.push({id: product.id, product, itemCount});
   } else if (itemCount === 0) {
     products.splice(productIndex, 1);
   } else {
@@ -34,7 +34,7 @@ export const totalProductsPrice = (products) => {
   let totalPrice = 0;
 
   for (const {product, itemCount} of products) {
-    totalPrice = totalPrice + (product.price || product.price2) * itemCount;
+    totalPrice = totalPrice + product * itemCount;
   }
   return totalPrice.toFixed(2);
 };
