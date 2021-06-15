@@ -32,7 +32,7 @@ export const Banner = () => {
 						boxSize="100px"
 						objectFit="cover"
 						w="100%"
-						h="250px"
+						h="350px"
 						src={BannerImage}
 						alt="Banner Image"
 						backgroundSize="cover"

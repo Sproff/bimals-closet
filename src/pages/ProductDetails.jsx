@@ -29,12 +29,11 @@ export const ProductDetails = () => {
 		const getParticularProduct = async () => {
 			try {
 				const { data } = await instance.get(`/product/${slug}`);
-				// console.log(data.data.product);
 				setProduct(data.data.product);
 				setLoader(false);
 			} catch (error) {
 				console.log(error);
-				setError(true);
+				setError(error.response?.data?.message);
 				setLoader(false);
 			}
 		};
@@ -53,12 +52,8 @@ export const ProductDetails = () => {
 		);
 	}
 
-	if (error) {
-    return <Text>Product does not exist</Text>;
-	}
-
 	const addToCart = () => {
-    const data = updateCart(cart, product, 1);
+		const data = updateCart(cart, product, 1);
 		setCart(data);
 	};
 
@@ -66,46 +61,50 @@ export const ProductDetails = () => {
 		<Box>
 			<Header />
 			<Container maxW="container.xl" my="4rem">
-				<Box mx={["1rem", "1rem", "4rem", "8rem"]}>
-					<Box>
-						<Image
-							boxSize="100px"
-							objectFit="cover"
-							w="100%"
-							h="300px"
-							src={product.image}
-							alt="Banner Image"
-							backgroundSize="cover"
-							backgroundPosition="center"
-						/>
-					</Box>
+				{!error ? (
+					<Box mx={["1rem", "1rem", "4rem", "8rem"]}>
+						<Box>
+							<Image
+								boxSize="100px"
+								objectFit="cover"
+								w="100%"
+								h="300px"
+								src={product.image}
+								alt="Banner Image"
+								backgroundSize="cover"
+								backgroundPosition="center"
+							/>
+						</Box>
 
-					<Box>
-						<HStack>
-							<Text fontSize="1.2rem" fontWeight="600">
-								{product.name}
-							</Text>
-							<Text color="gray.500" fontSize=".9rem">
-								${product.price}
-							</Text>
-						</HStack>
-						<Text>{product.desc}</Text>
+						<Box>
+							<HStack>
+								<Text fontSize="1.2rem" fontWeight="600">
+									{product.name}
+								</Text>
+								<Text color="gray.500" fontSize=".9rem">
+									${product.price}
+								</Text>
+							</HStack>
+							<Text>{product.desc}</Text>
+						</Box>
+						<Box w="100%">
+							<Link onClick={() => addToCart()}>
+								<Button
+									bg="#000"
+									color="#fff"
+									borderRadius="10px"
+									mt="1rem"
+									_hover={{ background: "#000", opacity: "0.8" }}
+									_focus={{ boxShadow: "none" }}
+								>
+									Add to Cart
+								</Button>
+							</Link>
+						</Box>
 					</Box>
-					<Box w="100%">
-						<Link onClick={() => addToCart()}>
-							<Button
-								bg="#000"
-								color="#fff"
-								borderRadius="10px"
-								mt="1rem"
-								_hover={{ background: "#000", opacity: "0.8" }}
-								_focus={{ boxShadow: "none" }}
-							>
-								Add to Cart
-							</Button>
-						</Link>
-					</Box>
-				</Box>
+				) : (
+					error
+				)}
 				<Footer />
 			</Container>
 		</Box>

@@ -62,9 +62,9 @@ export const Header = () => {
 								fontSize={["1rem", "1rem", "1rem", "1rem"]}
 								color="#fff"
 								borderRadius="10px"
-                px="2rem"
-                _hover={{ background: "#000", opacity: "0.8" }}
-                _focus={{ boxShadow: "none" }}
+								px="2rem"
+								_hover={{ background: "#000", opacity: "0.8" }}
+								_focus={{ boxShadow: "none" }}
 							>
 								Log In
 							</Button>
@@ -135,9 +135,9 @@ export const Header = () => {
 								fontSize={["1rem", "1rem", "1rem", "1rem"]}
 								color="#fff"
 								borderRadius="10px"
-                px="4rem"
-                _hover={{ background: "#000", opacity: "0.8" }}
-                _focus={{ boxShadow: "none" }}
+								px="4rem"
+								_hover={{ background: "#000", opacity: "0.8" }}
+								_focus={{ boxShadow: "none" }}
 							>
 								Log In
 							</Button>
