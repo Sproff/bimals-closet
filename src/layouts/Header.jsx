@@ -26,7 +26,6 @@ export const Header = () => {
 			>
 				<Box
 					display={["none", "none", "flex", "flex"]}
-					// w="100%"
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
 					cursor="pointer"
 				>
@@ -57,7 +56,6 @@ export const Header = () => {
 				</Box>
 				<Spacer />
 				<Box
-					// w={["0%", "0%", "50%", "50%"]}
 					display={["none", "none", "flex", "flex"]}
 					justifyContent="flex-end"
 				>
@@ -80,7 +78,6 @@ export const Header = () => {
 					)}
 				</Box>
 				<Box
-					// w="100%"
 					display={["none", "none", "flex", "flex"]}
 					justifyContent="flex-end"
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
@@ -117,29 +114,11 @@ export const Header = () => {
 				zIndex="9999"
 				borderBottom="1px solid rgba(0, 0, 0, 0.2)"
 			>
-				<Box
-					// w="100%"
-					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
-					cursor="pointer"
-				>
+				<Box fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]} cursor="pointer">
 					{authState !== "" ? (
 						<Link to="/profile">
 							<FaRegUserCircle fontSize="1.5rem" />
 						</Link>
-					) : (
-						""
-					)}
-				</Box>
-				<Spacer />
-				<Box
-					w="100%"
-					display="flex"
-					justifyContent={authState !== "" ? "center" : "left"}
-					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
-					cursor="pointer"
-				>
-					{authState !== "" ? (
-						""
 					) : (
 						<Link to="/login">
 							<Button
@@ -158,7 +137,6 @@ export const Header = () => {
 				</Box>
 				<Spacer />
 				<Box
-					// w="100%"
 					display="flex"
 					justifyContent="flex-end"
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}

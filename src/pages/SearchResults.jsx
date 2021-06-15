@@ -9,7 +9,7 @@ import {
 	Spinner,
 	Text,
 } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import instance from "../queries/axios.config";
 
 import { Footer } from "../layouts/Footer";
@@ -25,6 +25,7 @@ export const SearchResults = () => {
 
 	const location = useLocation();
 	const query = new URLSearchParams(location.search).get("query");
+	const { slug } = useParams();
 
 	useEffect(() => {
 		const searchProduct = async () => {
@@ -39,6 +40,19 @@ export const SearchResults = () => {
 			}
 		};
 		searchProduct();
+	}, []);
+
+	useEffect(() => {
+		const getAllProducts = async () => {
+			try {
+				const { data } = await instance.get(`/product/${slug}`);
+				setSearchResults(data.data.products);
+				setLoader(false);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		getAllProducts();
 	}, []);
 
 	if (loader) {
@@ -60,40 +74,46 @@ export const SearchResults = () => {
 				{!error ? (
 					<SimpleGrid columns={["1", "1", "2", "3"]} mt="2rem" spacing="20px">
 						{searchResults.map((searchResult) => (
-							<Box
-								bg="#fff"
-								height="100%"
-								borderRadius="10px"
-								overflow="hidden"
-								position="relative"
-								boxShadow="sm"
-								width="300px"
-								margin="2rem auto"
-								key={searchResult._id}
+							<Link
+								Link
+								to={`product/${searchResult.slug}`}
+								key={searchResult.slug}
 							>
-								<img src={searchResult.image} />
-								<Box pos="absolute" top="0" right="0" m="1rem">
-									<BsHeartFill color="red" />
+								<Box
+									bg="#fff"
+									height="100%"
+									borderRadius="10px"
+									overflow="hidden"
+									position="relative"
+									boxShadow="sm"
+									width="300px"
+									margin="2rem auto"
+									key={searchResult._id}
+								>
+									<img src={searchResult.image} />
+									<Box pos="absolute" top="0" right="0" m="1rem">
+										<BsHeartFill color="red" />
+									</Box>
+									<Box p=".5rem">
+										<HStack>
+											<Text fontWeight="500" fontSize="1rem">
+												{searchResult.name}
+											</Text>
+											<Spacer />
+											<Text color="gray.500" fontSize=".9rem">
+												${searchResult.price}
+											</Text>
+										</HStack>
+										<Flex>
+											<RiStarSFill color="goldenrod" />
+											<RiStarSFill color="goldenrod" />
+											<RiStarSFill color="goldenrod" />
+											<RiStarSFill color="goldenrod" />
+											<RiStarSFill color="goldenrod" />
+										</Flex>
+									</Box>
 								</Box>
-								<Box p=".5rem">
-									<HStack>
-										<Text fontWeight="500" fontSize="1rem">
-											{searchResult.name}
-										</Text>
-										<Spacer />
-										<Text color="gray.500" fontSize=".9rem">
-											${searchResult.price}
-										</Text>
-									</HStack>
-									<Flex>
-										<RiStarSFill color="goldenrod" />
-										<RiStarSFill color="goldenrod" />
-										<RiStarSFill color="goldenrod" />
-										<RiStarSFill color="goldenrod" />
-										<RiStarSFill color="goldenrod" />
-									</Flex>
-								</Box>
-							</Box>
+							</Link>
 						))}
 					</SimpleGrid>
 				) : (

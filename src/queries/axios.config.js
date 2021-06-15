@@ -1,8 +1,8 @@
-import axios from "axios"
+import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://bimals-closet-api.herokuapp.com",
-  headers: {}
+	baseURL: "https://bimals-closet-api.herokuapp.com",
+	headers: {},
 });
 
-export default instance
+export default instance;

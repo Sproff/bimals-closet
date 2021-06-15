@@ -49,7 +49,7 @@ export const SignUp = () => {
 						justifyContent="center"
 						alignItems="center"
 						h="100vh"
-						mt="3rem"
+						mt="1rem"
 					>
 						<Box bg="#" p="2rem" borderRadius="10px" boxShadow="md">
 							<Text
