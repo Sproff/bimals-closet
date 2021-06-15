@@ -4,6 +4,7 @@ import {
 	Container,
 	Flex,
 	HStack,
+	SimpleGrid,
 	Spacer,
 	Spinner,
 	Text,
@@ -57,7 +58,7 @@ export const SearchResults = () => {
 			<Header />
 			<Container maxW="container.xl" my="4rem">
 				{!error ? (
-					<Box>
+					<SimpleGrid columns={["1", "1", "2", "3"]} mt="2rem" spacing="20px">
 						{searchResults.map((searchResult) => (
 							<Box
 								bg="#fff"
@@ -94,7 +95,7 @@ export const SearchResults = () => {
 								</Box>
 							</Box>
 						))}
-					</Box>
+					</SimpleGrid>
 				) : (
 					error
 				)}
