@@ -4,9 +4,9 @@
 
 View the live project - [Click here](https://bimals-closet.vercel.app)
 
-View the backend of this project \_ [Click here](https://github.com/Sproff/bimals-closet-API)
+View the backend of this project - [Click here](https://github.com/Sproff/bimals-closet-API)
 
-This project will be updated on a regular basis. Feel free to make a PR.
+This project will be updated on a regular basis. Feel free to make a Pull Request(PR).
 
 ## Technologies used
 
