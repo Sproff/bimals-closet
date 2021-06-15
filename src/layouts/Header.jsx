@@ -30,15 +30,23 @@ export const Header = () => {
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
 					cursor="pointer"
 				>
-					<Link to="/profile">
-						<FaRegUserCircle fontSize="1.5rem" />
-					</Link>
+					{authState !== "" ? (
+						<Link to="/profile">
+							<FaRegUserCircle fontSize="1.5rem" />
+						</Link>
+					) : (
+						""
+					)}
 				</Box>
 				<Spacer />
 				<Box w="100%">
 					<Link to="/">
 						<Text
-							textAlign="center"
+							textAlign={
+								authState !== ""
+									? "center"
+									: ["center", "center", "left", "left"]
+							}
 							fontSize={["1.2rem", "1.2rem", "1.3rem", "1.5rem"]}
 							fontWeight="700"
 							cursor="pointer"
@@ -114,15 +122,19 @@ export const Header = () => {
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
 					cursor="pointer"
 				>
-					<Link to="/profile">
-						<FaRegUserCircle fontSize="1.5rem" />
-					</Link>
+					{authState !== "" ? (
+						<Link to="/profile">
+							<FaRegUserCircle fontSize="1.5rem" />
+						</Link>
+					) : (
+						""
+					)}
 				</Box>
 				<Spacer />
 				<Box
 					w="100%"
 					display="flex"
-					justifyContent="center"
+					justifyContent={authState !== "" ? "center" : "left"}
 					fontSize={["1.5rem", "1.5rem", "2rem", "2rem"]}
 					cursor="pointer"
 				>
