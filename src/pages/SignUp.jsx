@@ -4,7 +4,9 @@ import {
 	Button,
 	Container,
 	FormLabel,
-	Input,
+  Input,
+  InputGroup,
+	InputRightElement,
 	Text,
 } from "@chakra-ui/react";
 
@@ -17,9 +19,9 @@ import { AuthLayout } from "../layouts/AuthLayout";
 
 export const SignUp = () => {
 	const { register, handleSubmit } = useForm();
-	const [loading, setLoading] = useState(false);
 	const { authState } = useContext(AuthContext);
-
+	const [loading, setLoading] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
 	const history = useHistory();
 
 	if (authState) {
@@ -31,14 +33,16 @@ export const SignUp = () => {
 			setLoading(true);
 			const res = await signup(data);
 			// dispatch({ type: SIGNUP, payload: res.data });
-			history.push("/login");
 			setLoading(false);
 			toast.success(res.message);
+			history.push("/login");
 		} catch (error) {
 			setLoading(false);
 			toast.error(error.response?.data?.message || "Signup Failed");
 		}
 	};
+
+	const handleClick = () => setShowPassword(!showPassword);
 
 	return (
 		<Box>
@@ -85,15 +89,23 @@ export const SignUp = () => {
 									{...register("email", { required: true })}
 								/>
 
-								<FormLabel>Password</FormLabel>
+                <FormLabel>Password</FormLabel>
+                <InputGroup>
 								<Input
 									id="password"
 									placeholder="Password"
 									borderRadius="10px"
-									mb="1rem"
+                  mb="1rem"
+										type={showPassword ? "text" : "password"}
 									_focus={{ borderColor: "#000", boxShadow: "none" }}
 									{...register("password", { required: true })}
-								/>
+                />
+                <InputRightElement width="4.5rem">
+										<Button h="1.75rem" size="sm" onClick={handleClick} _focus={{ boxShadow: "none" }}>
+											{showPassword ? "Hide" : "Show"}
+										</Button>
+                </InputRightElement>
+                </InputGroup>
 								<Button
 									type="submit"
 									bg="#000"

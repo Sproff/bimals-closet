@@ -15,7 +15,7 @@ export const SearchInput = () => {
 
 	return (
 		<Stack spacing={4}>
-			<InputGroup bg="#fafafa" borderRadius="10px">
+			<InputGroup bg="#fafafa" borderRadius="10px" mt="4rem">
 				<Input
 					onChange={(e) => {
 						setSearch(e.target.value);

@@ -11,3 +11,15 @@ export const signup = async (body) => {
   
   return data;
 };
+
+export const createOrder = async (body) => {
+  const { data } = await instance.post("/order", body);
+  
+  return data;
+};
+
+export const getMyOrders = async (body) => {
+  const { data } = await instance.get("/order", body);
+  
+  return data;
+};

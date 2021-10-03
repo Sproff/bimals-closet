@@ -31,7 +31,6 @@ export const SearchResults = () => {
 		const searchProduct = async () => {
 			try {
 				const { data } = await instance.get(`/products/search?q=${query}`);
-				console.log(data);
 				setSearchResults(data.products);
 				setLoader(false);
 			} catch (error) {

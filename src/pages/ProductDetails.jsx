@@ -10,6 +10,7 @@ import {
 
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { Footer } from "../layouts/Footer";
 import { Header } from "../layouts/Header";
@@ -55,6 +56,7 @@ export const ProductDetails = () => {
 	const addToCart = () => {
 		const data = updateCart(cart, product, 1);
 		setCart(data);
+		toast.success("Product has been added successfully.");
 	};
 
 	return (

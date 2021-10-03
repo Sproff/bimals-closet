@@ -12,7 +12,7 @@ export const AuthLayout = ({ children }) => {
 				px="1rem"
 				h="50px"
 				alignItems="center"
-				position="fixed"
+				// position="fixed"
 				top="0"
 				w="100%"
 				bgColor="#fff"

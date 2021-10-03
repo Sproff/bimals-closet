@@ -8,16 +8,25 @@ import { Tags } from "../components/home/Tags";
 import { Footer } from "../layouts/Footer";
 
 export const Home = () => {
+	let fullName = JSON.parse(localStorage.getItem("data"))?.fullname;
+
 	return (
 		<Box>
 			<Header />
 			<Container maxW="container.xl">
+				<Box my="1rem">
+					{fullName ? (
+						<h2>Welcome back, <b>{fullName}!</b></h2>
+					) : (
+						<h2>Welcome to Bimal&apos;s Closet</h2>
+					)}
+				</Box>
 				<SearchInput />
 				<Banner />
 				<Tags />
 				<Products />
 
-				<Box mt="4rem" textAlign="center">
+				<Box textAlign="center">
 					<Text
 						fontSize={["1.3rem", "1.5rem", "2rem", "2rem"]}
 						fontWeight="700"

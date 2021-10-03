@@ -6,10 +6,12 @@ import {
 	// FormControl,
 	FormLabel,
 	Input,
+	InputGroup,
+	InputRightElement,
 	Text,
 } from "@chakra-ui/react";
 
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { login } from "../queries/auth";
 import { toast } from "react-toastify";
@@ -18,11 +20,14 @@ import { AuthLayout } from "../layouts/AuthLayout";
 
 export const Login = () => {
 	const { register, handleSubmit } = useForm();
-	const [loading, setLoading] = useState(false);
 	const { authState, dispatch } = useContext(AuthContext);
+	const [loading, setLoading] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
+	// const history = useHistory();
 
-	if (authState) {
-		return <Redirect to="/" />;
+  if (authState) {
+    window.location = "/"
+		// return <Redirect to="/" />;
 	}
 
 	const handleLogin = async (data) => {
@@ -32,11 +37,18 @@ export const Login = () => {
 			dispatch({ type: LOGIN, payload: res.data });
 			setLoading(false);
 			toast.success(res.message);
+      localStorage.setItem("data", JSON.stringify({
+        fullname: res.data.user.fullname,
+        email: res.data.user.email
+      }));
+      // history.go("/");
 		} catch (error) {
 			setLoading(false);
 			toast.error(error.response?.data?.message || "Login Failed");
 		}
 	};
+
+	const handleClick = () => setShowPassword(!showPassword);
 
 	return (
 		<Box>
@@ -75,14 +87,27 @@ export const Login = () => {
 								/>
 
 								<FormLabel>Password</FormLabel>
-								<Input
-									id="password"
-									placeholder="Password"
-									borderRadius="10px"
-									mb="1rem"
-									_focus={{ borderColor: "#000", boxShadow: "none" }}
-									{...register("password", { required: true })}
-								/>
+								<InputGroup>
+									<Input
+										id="password"
+										placeholder="Password"
+										borderRadius="10px"
+										mb="1rem"
+										type={showPassword ? "text" : "password"}
+										_focus={{ borderColor: "#000", boxShadow: "none" }}
+										{...register("password", { required: true })}
+									/>
+									<InputRightElement width="4.5rem">
+										<Button
+											h="1.75rem"
+											size="sm"
+											onClick={handleClick}
+											_focus={{ boxShadow: "none" }}
+										>
+											{showPassword ? "Hide" : "Show"}
+										</Button>
+									</InputRightElement>
+								</InputGroup>
 								<Button
 									type="submit"
 									bg="#000"

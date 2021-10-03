@@ -61,7 +61,7 @@ export const Footer = () => {
 						w="250px"
 						h="100px"
 						src={Paystack}
-						alt="Paystack Image"
+						alt="paystack-logo-image"
 					/>
 				</Box>
 			</HStack>

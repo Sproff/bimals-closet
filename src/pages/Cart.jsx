@@ -12,7 +12,6 @@ import {
 	Image,
 	Text,
 } from "@chakra-ui/react";
-// import Product6 from "../assets/images/pr6.jpg"
 
 import { MdAddBox } from "react-icons/md";
 import { FaMinus } from "react-icons/fa";
@@ -140,8 +139,38 @@ export const Cart = () => {
 
 					<HStack textAlign="center">
 						<Box w="100%">
-							<Link to="/checkout">
+							{!cart.length <= 0 ? (
+								<Link to="/checkout">
+									<Button
+										bg="#000"
+										color="#fff"
+										borderRadius="10px"
+										mt="1rem"
+										_hover={{ background: "#000", opacity: "0.8" }}
+										_focus={{ boxShadow: "none" }}
+									>
+										Checkout
+									</Button>
+								</Link>
+							) : (
+								<Link to="/checkout">
+									<Button
+										bg="#000"
+										color="#fff"
+										borderRadius="10px"
+										mt="1rem"
+										_focus={{ boxShadow: "none" }}
+										disabled
+									>
+										Checkout
+									</Button>
+								</Link>
+							)}
+						</Box>
+						<Box w="100%">
+							{!cart.length <= 0 ? (
 								<Button
+									onClick={() => setCart([])}
 									bg="#000"
 									color="#fff"
 									borderRadius="10px"
@@ -149,22 +178,21 @@ export const Cart = () => {
 									_hover={{ background: "#000", opacity: "0.8" }}
 									_focus={{ boxShadow: "none" }}
 								>
-									Checkout
+									Clear
 								</Button>
-							</Link>
-						</Box>
-						<Box w="100%">
-							<Button
-								onClick={() => setCart([])}
-								bg="#000"
-								color="#fff"
-								borderRadius="10px"
-								mt="1rem"
-								_hover={{ background: "#000", opacity: "0.8" }}
-								_focus={{ boxShadow: "none" }}
-							>
-								Clear
-							</Button>
+							) : (
+								<Button
+									onClick={() => setCart([])}
+									bg="#000"
+									color="#fff"
+									borderRadius="10px"
+									mt="1rem"
+									_focus={{ boxShadow: "none" }}
+									disabled
+								>
+									Clear
+								</Button>
+							)}
 						</Box>
 					</HStack>
 				</Box>
