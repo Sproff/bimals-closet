@@ -4,13 +4,13 @@ import {
 	Button,
 	Container,
 	Text,
-	Table,
-	Thead,
-	Tbody,
-	Tfoot,
-	Tr,
-	Th,
-	Td,
+	// Table,
+	// Thead,
+	// Tbody,
+	// Tfoot,
+	// Tr,
+	// Th,
+	// Td,
 	// TableCaption,
 	HStack,
 } from "@chakra-ui/react";
@@ -101,8 +101,8 @@ export const Profile = () => {
 
         <hr />
 
-				<Table variant="simple" my="1rem">
-					{/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
+				{/* <Table variant="simple" my="1rem">
+					{/* <TableCaption>Imperial to metric conversion factors</TableCaption> *}
 					<Thead>
 						<Tr>
 							<Th>Item Name</Th>
@@ -135,7 +135,7 @@ export const Profile = () => {
 						<Tr>
 						</Tr>
 					</Tfoot>
-				</Table>
+				</Table> */}
 
         <hr />
 
