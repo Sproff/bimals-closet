@@ -26,7 +26,7 @@ export const Home = () => {
 				<Tags />
 				<Products />
 
-				<Box textAlign="center">
+				<Box textAlign="center" mt="3rem">
 					<Text
 						fontSize={["1.3rem", "1.5rem", "2rem", "2rem"]}
 						fontWeight="700"
