@@ -1,4 +1,4 @@
-# Sproff's Portfolio
+# Bimal's Closet
 
 This repository contains the code for my React.js based e-commerce website.
 
