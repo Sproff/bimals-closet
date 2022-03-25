@@ -1,0 +1,41 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	box-shadow: 0 0 0 30px white inset !important;
+}
+
+.react-tel-input .selected-flag {
+	width: 41px !important;
+}
+
+.react-tel-input .flag-dropdown {
+	border: 1px solid #eaeaea !important;
+	background-color: transparent !important;
+	border-radius: 10px 0 0 10px !important;
+}
+
+.react-tel-input .form-control::placeholder {
+	font-family: "Poppins", sans-serif !important;
+	font-weight: 500 !important;
+	font-size: 0.9rem !important;
+	color: #3f3f3f !important;
+}
+
+.react-tel-input .selected-flag:hover,
+.react-tel-input .selected-flag:focus {
+	background-color: transparent !important;
+}
+
+.react-tel-input .country-list .country:hover {
+	background-color: #eaeaea !important;
+}
+
+.react-tel-input .country-list .country-name {
+	font-family: "Poppins", sans-serif !important;
+}
+
+.react-tel-input .country-list .country .dial-code {
+	font-family: "Poppins", sans-serif !important;
+	color: #eaeaea;
+}

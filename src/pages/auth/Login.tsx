@@ -3,7 +3,6 @@ import {
 	Button,
 	Container,
 	FormControl,
-	Heading,
 	Stack,
 	Image,
 	Input,
@@ -11,13 +10,13 @@ import {
 	InputRightElement,
 	Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-// import LoginBgOne from "../../assets/images/login-bg-one.png";
-// import LoginBgTwo from "../../assets/images/login-bg-two.png";
+import LoginBgOne from "../../assets/images/login-bg-one.png";
+import LoginBgTwo from "../../assets/images/login-bg-two.png";
 
 const Login = () => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -25,13 +24,10 @@ const Login = () => {
 	const handleClick = () => setShowPassword(!showPassword);
 
 	return (
-		<Container maxW="1024px" fontFamily="Poppins">
+		<Container maxW="1024px" p="0">
 			<Box>
-				<Stack direction={["column", "column", "row"]}>
+				<Stack spacing="0" direction={["column", "column", "row"]}>
 					<Box
-						// display="flex"
-						// flexDir="column"
-						// justifyContent="space-between"
 						h="100vh"
 						w={["100%", "100%", "50%"]}
 						bg="brand.green100"
@@ -44,7 +40,7 @@ const Login = () => {
 							pos="absolute"
 							right="-14px"
 							top="102px"
-							// src={LoginBgOne}
+							src={LoginBgOne}
 							alt="Login Background"
 						/>
 						<Image
@@ -52,7 +48,7 @@ const Login = () => {
 							pos="absolute"
 							left="0"
 							bottom="0"
-							// src={LoginBgTwo}
+							src={LoginBgTwo}
 							alt="Login Background"
 						/>
 					</Box>
@@ -64,16 +60,17 @@ const Login = () => {
 						alignItems="center"
 						justifyContent="center"
 						flexDir="column"
+						ms="0rem"
 					>
-						<Heading
-							color="brand.grey300"
-							fontFamily="Poppins"
-							fontWeight="600"
-							fontSize="2rem"
-						>
+						<Text color="brand.grey300" fontWeight="600" fontSize="2rem">
 							Let’s sign you in
-						</Heading>
-						<Text color="brand.grey300" fontWeight="500" fontSize="1rem">
+						</Text>
+						<Text
+							color="brand.grey300"
+							fontWeight="500"
+							fontSize="1rem"
+							letterSpacing="0.05rem"
+						>
 							Welcome back. We’ve missed you!
 						</Text>
 
@@ -169,7 +166,7 @@ const Login = () => {
 							</Link>
 
 							<Box>
-								<Link to="/register">
+								<Link to="/auth/register">
 									<Text
 										mt=".7rem"
 										color="brand.grey400"

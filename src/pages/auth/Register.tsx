@@ -2,16 +2,15 @@ import {
 	Box,
 	Button,
 	Container,
-	Flex,
 	FormControl,
-	Heading,
 	Image,
 	Input,
 	InputGroup,
 	InputRightElement,
+	Stack,
 	Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import PhoneInput from "react-phone-input-2";
@@ -19,7 +18,7 @@ import "react-phone-input-2/lib/style.css";
 
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-import RegisterBg from "../assets/images/register-bg.png";
+import RegisterBg from "../../assets/images/register-bg.png";
 
 const Register = () => {
 	const [phoneInput, setPhoneInput] = useState("");
@@ -28,23 +27,29 @@ const Register = () => {
 	const handleClick = () => setShowPassword(!showPassword);
 
 	return (
-		<Container maxW="1024px" fontFamily="Poppins">
+		<Container maxW="1024px" p="0">
 			<Box>
-				<Flex>
+				<Stack spacing="0" direction={["column", "column", "row"]}>
 					<Box
+						h="100vh"
+						w={["100%", "100%", "50%"]}
+						bg="brand.green100"
+						p="2rem"
 						display="flex"
 						flexDir="column"
 						justifyContent="space-between"
-						h="100vh"
-						w="50%"
-						bg="brand.green100"
-						p="2rem"
 					>
 						<Box>
 							<Image w="100%" src={RegisterBg} alt="Register Background" />
 						</Box>
 						<Box>
-							<Text color="#fff" pl=".6rem" fontWeight="500">
+							<Text
+								color="#fff"
+								pl=".6rem"
+								fontWeight="600"
+								textAlign="left"
+								fontSize=".9rem"
+							>
 								Step 1 of 3
 							</Text>
 						</Box>
@@ -58,14 +63,9 @@ const Register = () => {
 						justifyContent="center"
 						flexDir="column"
 					>
-						<Heading
-							color="brand.grey300"
-							fontFamily="Poppins"
-							fontWeight="600"
-							fontSize="2rem"
-						>
+						<Text color="brand.grey300" fontWeight="600" fontSize="2rem">
 							Create account
-						</Heading>
+						</Text>
 
 						<Box as="form" w="56%">
 							<FormControl my="2rem" isRequired>
@@ -165,7 +165,7 @@ const Register = () => {
 								</InputGroup>
 							</FormControl>
 
-							<Link to="/verifyEmail">
+							<Link to="/auth/verifyEmail">
 								<Button
 									w="100%"
 									py="1.45rem"
@@ -188,7 +188,7 @@ const Register = () => {
 							</Link>
 
 							<Box>
-								<Link to="/login">
+								<Link to="/auth/login">
 									<Text
 										mt=".7rem"
 										color="brand.grey400"
@@ -202,7 +202,7 @@ const Register = () => {
 							</Box>
 						</Box>
 					</Box>
-				</Flex>
+				</Stack>
 			</Box>
 		</Container>
 	);

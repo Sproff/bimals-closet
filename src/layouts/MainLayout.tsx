@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, HStack, Text } from "@chakra-ui/react";
-// import { Link } from "react-router-dom";
+import { Container } from "@chakra-ui/react";
 
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -11,16 +10,11 @@ type childrenProps = {
 
 const MainLayout = ({ children }: childrenProps) => {
 	return (
-		<Box maxW="1024px" bg="#00AF54">
+		<Container maxW="1024px" p="0">
 			<Header />
-			<HStack>
-				<Text>Main</Text>
-			</HStack>
-
 			{children}
-
 			<Footer />
-		</Box>
+		</Container>
 	);
 };
 
