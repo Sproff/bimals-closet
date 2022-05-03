@@ -11,7 +11,8 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -19,12 +20,54 @@ import "react-phone-input-2/lib/style.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 import RegisterBg from "../../assets/images/register-bg.png";
+import { useDispatch } from "react-redux";
+import { axiosPost } from "../../queries/auth";
+import { getError, registerUser } from "../../redux/actions/authAction";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { handleError } from "../../utils/toastError";
+
+interface IFormInput {
+	fullName: string;
+	email: string;
+	phoneNumber: number;
+	password: string;
+}
 
 const Register = () => {
 	const [phoneInput, setPhoneInput] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const { register, handleSubmit, control } = useForm<IFormInput>();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleClick = () => setShowPassword(!showPassword);
+
+	const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+		try {
+			setLoading(true);
+			const res = await axiosPost("/user/register", data);
+			dispatch(registerUser(data));
+			setLoading(false);
+			toast.success(res.message, {
+				position: toast.POSITION.TOP_CENTER,
+			});
+			navigate("/auth/login");
+		} catch (error) {
+			setLoading(false);
+			if (axios.isAxiosError(error)) {
+				dispatch(getError(error));
+				toast.error(
+					error?.response?.data?.message ||
+						"Erorr occurred! Please try again later",
+					{
+						position: toast.POSITION.TOP_CENTER,
+					}
+				);
+			}
+		}
+	};
 
 	return (
 		<Container maxW="1024px" p="0">
@@ -67,14 +110,15 @@ const Register = () => {
 							Create account
 						</Text>
 
-						<Box as="form" w="56%">
+						<Box as="form" w="56%" onSubmit={handleSubmit(onSubmit)}>
 							<FormControl my="2rem" isRequired>
 								<Input
-									id="full-name"
+									id="fullName"
 									border="1px solid #EAEAEA"
 									borderRadius="10px"
 									placeholder="Full name"
 									cursor="pointer"
+									{...register("fullName", { required: true })}
 									_placeholder={{
 										fontWeight: 500,
 										fontSize: ".9rem",
@@ -99,6 +143,7 @@ const Register = () => {
 									type="email"
 									placeholder="Email"
 									cursor="pointer"
+									{...register("email", { required: true })}
 									_placeholder={{
 										fontWeight: 500,
 										fontSize: ".9rem",
@@ -115,20 +160,36 @@ const Register = () => {
 								/>
 							</FormControl>
 
-							<PhoneInput
-								country="ng"
-								value={phoneInput}
-								onChange={setPhoneInput}
-								inputProps={{
-									placeholder: "Phone Number",
-								}}
-								inputStyle={{
-									border: "1px solid #EAEAEA",
-									borderRadius: "10px",
-									cursor: "pointer",
-									margin: "2rem 0",
-									padding: "1.3rem 3rem",
-									width: "100%",
+							<Controller
+								name="phoneNumber"
+								control={control}
+								rules={{ required: true, minLength: 13, maxLength: 13 }}
+								render={({ field }) => {
+									return (
+										<PhoneInput
+											country="ng"
+											value={phoneInput}
+											autoFormat={true}
+											onChange={(e) => {
+												setPhoneInput(e);
+												field.onChange(e);
+											}}
+											inputClass="phone-input"
+											inputProps={{
+												id: "phoneNumber",
+												placeholder: "Phone Number",
+												required: true,
+											}}
+											inputStyle={{
+												border: "1px solid #EAEAEA",
+												borderRadius: "10px",
+												cursor: "pointer",
+												margin: "2rem 0",
+												padding: "1.3rem 3rem",
+												width: "100%",
+											}}
+										/>
+									);
 								}}
 							/>
 
@@ -141,6 +202,7 @@ const Register = () => {
 										type={showPassword ? "text" : "password"}
 										placeholder="Password"
 										cursor="pointer"
+										{...register("password", { required: true })}
 										_placeholder={{
 											fontWeight: 500,
 											fontSize: ".9rem",
@@ -165,27 +227,28 @@ const Register = () => {
 								</InputGroup>
 							</FormControl>
 
-							<Link to="/auth/verifyEmail">
-								<Button
-									w="100%"
-									py="1.45rem"
-									color="#fff"
-									bg="brand.green100"
-									borderRadius="10px"
-									type="submit"
-									cursor="pointer"
-									fontSize="0.9rem"
-									_hover={{
-										bg: "brand.green200",
-									}}
-									_focus={{
-										borderColor: "none",
-										boxShadow: "none",
-									}}
-								>
-									Create Account
-								</Button>
-							</Link>
+							{/* <Link to="/auth/verifyEmail"> */}
+							<Button
+								w="100%"
+								py="1.45rem"
+								color="#fff"
+								bg="brand.green100"
+								borderRadius="10px"
+								type="submit"
+								cursor="pointer"
+								fontSize="0.9rem"
+								isLoading={loading}
+								_hover={{
+									bg: "brand.green200",
+								}}
+								_focus={{
+									borderColor: "none",
+									boxShadow: "none",
+								}}
+							>
+								Create Account
+							</Button>
+							{/* </Link> */}
 
 							<Box>
 								<Link to="/auth/login">

@@ -44,7 +44,12 @@ export const Footer = () => {
 						</Box>
 					</Box>
 				</Stack>
-				<Text fontWeight="500" fontSize="1rem" color="brand.white100">
+				<Text
+					fontWeight="500"
+					fontSize="1rem"
+					color="brand.white100"
+					textAlign="center"
+				>
 					Copyright {getYear} | Bimal&apos;s Closet
 				</Text>
 			</Box>

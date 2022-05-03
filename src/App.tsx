@@ -5,7 +5,8 @@ import "./theme/index.css";
 
 export const App = () => (
 	<ChakraProvider theme={theme}>
-		<Box textAlign="center" fontSize="xl">
+		{/* <Box textAlign="center" fontSize="xl"> */}
+		<Box>
 			<Routes />
 		</Box>
 	</ChakraProvider>

@@ -1,4 +1,5 @@
 import { Box, Button, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import HeroBg from "../../assets/images/hero-bg.png";
 
 export const Hero = () => {
@@ -18,20 +19,22 @@ export const Hero = () => {
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque soluta
 					aliquam dicta explicabo placeat ea iure iste, quaerat laboriosam enim.
 				</Text>
-				<Button
-					bg="brand.green100"
-					color="brand.white100"
-					fontSize=".9rem"
-					_hover={{
-						bg: "brand.green200",
-					}}
-					_focus={{
-						borderColor: "none",
-						boxShadow: "none",
-					}}
-				>
-					Join us now
-				</Button>
+				<Link to="/auth/login">
+					<Button
+						bg="brand.green100"
+						color="brand.white100"
+						fontSize=".9rem"
+						_hover={{
+							bg: "brand.green200",
+						}}
+						_focus={{
+							borderColor: "none",
+							boxShadow: "none",
+						}}
+					>
+						Join us now
+					</Button>
+				</Link>
 			</Box>
 		</Box>
 	);
