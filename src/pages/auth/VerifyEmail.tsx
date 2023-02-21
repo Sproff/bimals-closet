@@ -11,7 +11,7 @@ import VerifyEmailImage from "../../assets/images/verify-email-img.png";
 
 const VerifyEmail = () => {
 	return (
-		<Container bg="#fff" maxW="1024px" pos="relative" overflow="hidden" p="0">
+		<Container bg="#fff" maxW="1280px" pos="relative" overflow="hidden" p="0">
 			<Flex p="2rem" flexDir="column" h="100vh" justifyContent="space-between">
 				<Box>
 					<Box

@@ -21,7 +21,7 @@ const VerifyPhone = () => {
 		<Container
 			bg="brand.green100"
 			color="#fff"
-			maxW="1024px"
+			maxW="1280px"
 			pos="relative"
 			overflow="hidden"
 			p="0"

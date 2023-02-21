@@ -62,7 +62,7 @@ const Login = () => {
 	};
 
 	return (
-		<Container maxW="1024px" p="0">
+		<Container maxW="1280px" p="0">
 			<Box>
 				<Stack spacing="0" direction={["column", "column", "row"]}>
 					<Box

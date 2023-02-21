@@ -42,7 +42,7 @@ export const Products = () => {
 
 	return (
 		<Container
-			maxW="1024px"
+			maxW="1280px"
 			p="0"
 			bg="brand.white300"
 			position="relative"

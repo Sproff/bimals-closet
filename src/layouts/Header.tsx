@@ -22,7 +22,7 @@ export const Header = () => {
 
 	return (
 		<Box bg="brand.green100">
-			<Container maxW="1024px" p="0" position="relative">
+			<Box maxW="1280px" mx="auto" p="0" position="relative">
 				<Stack
 					spacing="0"
 					direction={["row"]}
@@ -102,7 +102,7 @@ export const Header = () => {
 					</Flex>
 					{openCatgories ? <CategoriesModal /> : null}
 				</Box>
-			</Container>
+			</Box>
 		</Box>
 	);
 };

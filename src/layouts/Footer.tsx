@@ -5,7 +5,7 @@ export const Footer = () => {
 	const getYear = new Date().getFullYear();
 
 	return (
-		<Container maxW="1024px" p="0">
+		<Container maxW="1280px" p="0">
 			<Box p="1.5rem 3rem" bg="brand.grey300">
 				<Stack direction="row" justifyContent="space-between">
 					<Box>
