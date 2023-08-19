@@ -5,13 +5,9 @@
 	},
 	"extends": [
 		"eslint:recommended",
-		"plugin:@typescript-eslint/eslint-recommended",
-		"plugin:@typescript-eslint/recommended",
 		"plugin:react/recommended",
-		"plugin:jsx-a11y/recommended",
-		"plugin:prettier/recommended"
+		"plugin:@typescript-eslint/recommended"
 	],
-	"plugins": ["react", "@typescript-eslint"],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaFeatures": {
@@ -20,6 +16,7 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
+	"plugins": ["react", "prettier", "@typescript-eslint"],
 	"rules": {
 		"prettier/prettier": [
 			"error",
@@ -27,13 +24,8 @@
 				"endOfLine": "auto"
 			}
 		],
-		"quotes": [
-			0,
-			"double",
-			{
-				"avoidEscape": true
-			}
-		],
+		"quotes": ["error", "double"],
+		"semi": ["error", "always"],
 		"react/prop-types": "off",
 		"import/prefer-default-export": "off",
 		"react/react-in-jsx-scope": "off",
@@ -49,6 +41,12 @@
 				"namedComponents": "arrow-function"
 			}
 		],
-		"arrow-body-style": "off"
+		"arrow-body-style": "off",
+		"react/display-name": "off"
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
 	}
 }

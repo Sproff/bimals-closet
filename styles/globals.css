@@ -1,0 +1,20 @@
+.react-tel-input .form-control:focus,
+.react-tel-input .flag-dropdown.open {
+	border-color: #00af54 !important;
+	box-shadow: none !important;
+	cursor: auto !important;
+}
+
+.react-tel-input .flag-dropdown {
+	border: 1px solid #eaeaea !important;
+	border-radius: 1rem 0 0 1rem !important;
+	background-color: transparent !important;
+}
+
+.react-tel-input .flag-dropdown.open .selected-flag {
+	background: transparent !important;
+}
+
+.react-tel-input .selected-flag:hover {
+	background: transparent !important;
+}
