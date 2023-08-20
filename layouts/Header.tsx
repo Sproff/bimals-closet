@@ -1,4 +1,12 @@
-import { Box, Flex, Icon, Stack, Text, useBoolean } from "@chakra-ui/react";
+import {
+	Box,
+	Circle,
+	Flex,
+	Icon,
+	Stack,
+	Text,
+	useBoolean,
+} from "@chakra-ui/react";
 import { BiUserCircle, BiSearch } from "react-icons/bi";
 import { TiShoppingCart } from "react-icons/ti";
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
@@ -6,6 +14,8 @@ import { AuthModal, CategoriesModal } from "@/components/ui/modals";
 import { getLocalStorage } from "@/utils/helpers";
 import { MobileNavbar } from "@/components/ui/modals/MobileNavbar";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useHydratedCartState } from "@/hooks/state/hydrated";
 
 export const Header = () => {
 	const [openDropDown, setOpenDropDown] = useBoolean();
@@ -24,6 +34,9 @@ export const Header = () => {
 		setActive.toggle();
 	};
 
+	const cart = useHydratedCartState("cart") ?? [];
+	console.log("cart", cart);
+
 	return (
 		<Box bg="brand.green100" pos="fixed" w="100%" zIndex="99">
 			<Box maxW="1280px" mx="auto" p="2rem 0 0 0">
@@ -36,9 +49,11 @@ export const Header = () => {
 					color="brand.white100"
 				>
 					<Box>
-						<Text fontWeight="700" fontSize={["1.5rem", "2rem"]}>
-							Bimal&apos;s Closet
-						</Text>
+						<Link href="/">
+							<Text fontWeight="700" fontSize={["1.5rem", "2rem"]}>
+								Bimal&apos;s Closet
+							</Text>
+						</Link>
 					</Box>
 
 					<Flex
@@ -93,24 +108,45 @@ export const Header = () => {
 							fontSize="2rem"
 							fontWeight="500"
 						>
-							<Icon cursor="pointer" as={BiSearch} />
-							<Icon cursor="pointer" as={TiShoppingCart} />
+							<Box>
+								<Icon cursor="pointer" as={BiSearch} />
+							</Box>
+
+							<Box as="span" pos="relative">
+								<Circle
+									bg="brand.gold100"
+									p=".3rem .6rem"
+									pos="absolute"
+									left="1.1rem"
+									top="-.7rem"
+									fontSize=".9rem"
+									fontWeight="600"
+								>
+									{cart.length}
+								</Circle>
+								<Icon cursor="pointer" as={TiShoppingCart} />
+							</Box>
+
 							<Flex
 								onClick={setOpenDropDown.toggle}
 								alignItems="center"
 								cursor="pointer"
 							>
-								<BiUserCircle />
+								<Box>
+									<Icon cursor="pointer" as={BiUserCircle} />
+								</Box>
 								<Flex align="center">
-									{name ? (
-										<Text ml=".2rem" fontSize="1.5rem">
-											{name}
-										</Text>
-									) : (
-										<Text ml=".2rem" fontSize="1.5rem">
-											Guest
-										</Text>
-									)}
+									<Box mt="-.5rem">
+										{name ? (
+											<Text ml=".2rem" fontSize="1.5rem">
+												{name}
+											</Text>
+										) : (
+											<Text ml=".2rem" fontSize="1.5rem">
+												Guest
+											</Text>
+										)}
+									</Box>
 
 									<Box fontSize="1.5rem" pos="relative">
 										{openDropDown ? <MdArrowDropUp /> : <MdArrowDropDown />}
@@ -123,7 +159,7 @@ export const Header = () => {
 				{openDropDown && <AuthModal />}
 			</Box>
 
-			<Box bg="brand.white100">
+			<Box bg="brand.white100" shadow="xs">
 				<Box
 					maxW="1280px"
 					mx="auto"
@@ -139,7 +175,7 @@ export const Header = () => {
 						cursor="pointer"
 						w="max-content"
 					>
-						<Text ml=".2rem" fontSize="1.5rem">
+						<Text ml={["3rem", ".2rem"]} fontSize="1.5rem">
 							Categories
 						</Text>
 

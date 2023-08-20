@@ -9,4 +9,3 @@ export type IFormRegisterInput = {
 	fullName: string;
 	phoneNumber: number;
 };
-

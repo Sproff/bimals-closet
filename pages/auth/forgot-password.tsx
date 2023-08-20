@@ -11,7 +11,7 @@ import { useShowToast } from "@/hooks/toast/useShowToast";
 import { useForgotPassword } from "@/hooks/auth/useAuth";
 import Link from "next/link";
 import { CustomInput } from "@/components/ui/forms/CustomInput";
-import { IFormLoginInput } from "@/interfaces/auth";
+import { IFormLoginInput } from "@/types/auth";
 import { CustomButton } from "@/components/ui/buttons/CustomButton";
 import { saveLocalStorage } from "@/utils/helpers";
 import { useRouter } from "next/router";

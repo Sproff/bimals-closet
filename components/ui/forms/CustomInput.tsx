@@ -1,4 +1,4 @@
-import { CustomInputProps } from "@/interfaces/form";
+import { CustomInputProps } from "@/types/form";
 import { Box, Input, Text } from "@chakra-ui/react";
 
 const CustomInput = ({
@@ -44,7 +44,7 @@ const CustomInput = ({
 					cursor="pointer"
 					fontSize="1.5rem"
 					pos="absolute"
-          zIndex="2"
+					zIndex="2"
 					top="1.5rem"
 					right="1rem"
 				>

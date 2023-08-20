@@ -10,7 +10,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import axios from "axios";
 import { useShowToast } from "@/hooks/toast/useShowToast";
 import { useRegisterUser } from "@/hooks/auth/useAuth";
-import { IFormRegisterInput } from "@/interfaces/auth";
+import { IFormRegisterInput } from "@/types/auth";
 import Link from "next/link";
 import { CustomInput } from "@/components/ui/forms/CustomInput";
 import { CustomButton } from "@/components/ui/buttons/CustomButton";

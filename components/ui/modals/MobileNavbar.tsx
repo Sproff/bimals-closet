@@ -6,7 +6,7 @@ import { Fragment } from "react";
 const MobileNavbar = () => {
 	return (
 		<Box
-			bg="brand.dark500"
+			bg="brand.dark100"
 			h="100%"
 			pos="fixed"
 			top="7rem"

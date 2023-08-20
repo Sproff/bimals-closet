@@ -1,5 +1,5 @@
 import { AxiosInstance } from "@/config";
-import { IFormLoginInput, IFormRegisterInput } from "@/interfaces/auth";
+import { IFormLoginInput, IFormRegisterInput } from "@/types/auth";
 
 export const loginUser = async (payload: IFormLoginInput) => {
 	const { data } = await AxiosInstance.post("/user/login", payload);

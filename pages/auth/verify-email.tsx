@@ -122,4 +122,4 @@ const VerifyEmail = () => {
 	);
 };
 
-export default  withAuth(VerifyEmail);
+export default withAuth(VerifyEmail);

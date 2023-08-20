@@ -7,7 +7,7 @@ import {
 	registerUser,
 	verifyEmailToken,
 } from "@/queries/auth";
-import { IFormLoginInput, IFormRegisterInput } from "@/interfaces/auth";
+import { IFormLoginInput, IFormRegisterInput } from "@/types/auth";
 
 export const useLoginUser = () => {
 	const queryClient = useQueryClient();

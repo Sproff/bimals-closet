@@ -12,10 +12,10 @@ export type AuthModalDataProps = {
 };
 
 export const AuthModalData: AuthModalDataProps[] = [
-  {
-    icon: TiShoppingCart,
-    text: "Cart",
-  },
+	{
+		icon: TiShoppingCart,
+		text: "Cart",
+	},
 	{
 		icon: AiOutlineShop,
 		text: "Order",
@@ -28,15 +28,13 @@ export const AuthModalData: AuthModalDataProps[] = [
 		icon: IoMdLogOut,
 		text: "Logout",
 	},
-
-	
 ];
 
 export const CategoriesModalData: AuthModalDataProps[] = [
-  {
-    icon: SiGooglemybusiness,
-    text: "All Products",
-  },
+	{
+		icon: SiGooglemybusiness,
+		text: "All Products",
+	},
 	{
 		icon: GiLoincloth,
 		text: "Women",
@@ -49,7 +47,4 @@ export const CategoriesModalData: AuthModalDataProps[] = [
 		icon: GiRunningShoe,
 		text: "Shoes",
 	},
-
-	
 ];
-

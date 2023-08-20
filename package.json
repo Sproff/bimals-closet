@@ -32,7 +32,8 @@
     "react-paystack": "^4.0.3",
     "react-phone-input-2": "^2.15.1",
     "react-query": "^3.39.3",
-    "typescript": "*"
+    "typescript": "*",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.50.0",

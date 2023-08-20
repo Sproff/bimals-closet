@@ -5,3 +5,9 @@ export const getAllProducts = async () => {
 
 	return data;
 };
+
+export const getParticularProduct = async (slug: string) => {
+	const { data } = await AxiosInstance.get(`/products/${slug}`);
+
+	return data;
+};

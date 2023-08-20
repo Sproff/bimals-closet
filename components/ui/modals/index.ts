@@ -1,2 +1,2 @@
-export * from "./HeaderModal"
-export * from "./CategoriesModal"
+export * from "./HeaderModal";
+export * from "./CategoriesModal";

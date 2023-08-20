@@ -2,47 +2,20 @@ import {
 	Box,
 	Button,
 	Circle,
-	Container,
 	Flex,
-	Grid,
-	GridItem,
 	Icon,
-	Img,
 	SimpleGrid,
 	Text,
-	useBoolean,
 } from "@chakra-ui/react";
 
 import { GoHeart, GoHeartFill } from "react-icons/go";
-import { FiTruck } from "react-icons/fi";
-import { MdOutlineStarBorder, MdSecurity } from "react-icons/md";
-import { RiCustomerService2Fill } from "react-icons/ri";
-import { HiOutlineBadgeCheck } from "react-icons/hi";
+import { MdOutlineStarBorder } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 import { useGetAllProducts } from "@/hooks/products/useProduct";
 import { useState } from "react";
-import { CheckedProducts, Product } from "@/interfaces/product";
-
-const data = [
-	{
-		icon: FiTruck,
-		text: "Speed Delivery",
-	},
-	{
-		icon: MdSecurity,
-		text: "Secure Payment",
-	},
-	{
-		icon: RiCustomerService2Fill,
-		text: "24 hours customer service",
-	},
-
-	{
-		icon: HiOutlineBadgeCheck,
-		text: "Quality Products",
-	},
-];
+import { Product } from "@/types/product";
+import { SimilarProduct } from "../product/SimilarProduct";
 
 const Products = () => {
 	const { data: productData } = useGetAllProducts();
@@ -61,8 +34,6 @@ const Products = () => {
 			}
 		});
 	};
-
-	console.log("productData", productData);
 
 	return (
 		<Box
@@ -124,7 +95,7 @@ const Products = () => {
 										overflow="hidden"
 									>
 										<Image
-											src={product?.image}
+											src={product?.image[0]}
 											width={300}
 											height={200}
 											objectFit="cover"
@@ -141,7 +112,7 @@ const Products = () => {
 													color="brand.grey300"
 													textAlign="left"
 													maxW="200px"
-													fontSize={["1.2rem", "1.5rem"]}
+													fontSize={["1.4rem", "1.5rem"]}
 													fontWeight="600"
 													isTruncated
 												>
@@ -149,7 +120,7 @@ const Products = () => {
 												</Text>
 												<Box>
 													<Text
-														fontSize={["1.1rem", "1.3rem"]}
+														fontSize={["1.2rem", "1.3rem"]}
 														fontWeight="500"
 														color="brand.blue100"
 													>
@@ -160,7 +131,7 @@ const Products = () => {
 
 											<Flex
 												align="center"
-												fontSize={["1rem", "1.5rem"]}
+												fontSize={["1.3rem", "1.5rem"]}
 												color="brand.gold100"
 												mt="1rem"
 											>
@@ -191,35 +162,6 @@ const Products = () => {
 						>
 							View more products
 						</Button>
-					</Box>
-
-					<Box my="10rem">
-						<Text
-							color="brand.grey300"
-							fontWeight="600"
-							fontSize={["2rem", "2rem", "2.5rem", "2.5rem"]}
-							textAlign="center"
-						>
-							Why Choose Us?
-						</Text>
-
-						<SimpleGrid gap="2rem" mt="3rem" columns={[2, 4]}>
-							{data.map((item, idx) => (
-								<Flex
-									mt="1rem"
-									key={idx}
-									color="brand.gold100"
-									flexDir="column"
-									alignItems="center"
-								>
-									<Icon fontSize="5rem" as={item.icon} />
-
-									<Text color="brand.grey400" fontSize="1.5rem" mt="1rem" textAlign="center">
-										{item.text}
-									</Text>
-								</Flex>
-							))}
-						</SimpleGrid>
 					</Box>
 				</Box>
 			</Box>
