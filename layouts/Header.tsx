@@ -23,6 +23,7 @@ export const Header = () => {
 	const [active, setActive] = useBoolean();
 	const [openModal, setOpenModal] = useBoolean();
 	const [name, setName] = useState<string>("");
+	const cart = useHydratedCartState("cart");
 
 	useEffect(() => {
 		const fullName = getLocalStorage("fullName");
@@ -33,9 +34,6 @@ export const Header = () => {
 		setOpenModal.toggle();
 		setActive.toggle();
 	};
-
-	const cart = useHydratedCartState("cart") ?? [];
-	console.log("cart", cart);
 
 	return (
 		<Box bg="brand.green100" pos="fixed" w="100%" zIndex="99">
@@ -112,20 +110,22 @@ export const Header = () => {
 								<Icon cursor="pointer" as={BiSearch} />
 							</Box>
 
-							<Box as="span" pos="relative">
-								<Circle
-									bg="brand.gold100"
-									p=".3rem .6rem"
-									pos="absolute"
-									left="1.1rem"
-									top="-.7rem"
-									fontSize=".9rem"
-									fontWeight="600"
-								>
-									{cart.length}
-								</Circle>
-								<Icon cursor="pointer" as={TiShoppingCart} />
-							</Box>
+							<Link href="/cart">
+								<Box as="span" pos="relative">
+									<Circle
+										bg="brand.gold100"
+										p=".3rem .6rem"
+										pos="absolute"
+										left="1.1rem"
+										top="-.7rem"
+										fontSize=".9rem"
+										fontWeight="600"
+									>
+										{cart?.length}
+									</Circle>
+									<Icon cursor="pointer" as={TiShoppingCart} />
+								</Box>
+							</Link>
 
 							<Flex
 								onClick={setOpenDropDown.toggle}

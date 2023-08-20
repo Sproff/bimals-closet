@@ -16,6 +16,7 @@ const CustomButton = ({
 	text,
 	btnIcon,
 	isLoading,
+	isDisabled,
 	isBtnIcon,
 }: CustomButtonProps) => {
 	return (
@@ -35,6 +36,7 @@ const CustomButton = ({
 				cursor="pointer"
 				fontSize={fontSize || "1.42rem"}
 				isLoading={isLoading}
+				isDisabled={isDisabled}
 				_hover={{
 					bg: bgHover || "brand.green200",
 				}}

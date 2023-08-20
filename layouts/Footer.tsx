@@ -1,14 +1,6 @@
 import { CustomInput } from "@/components/ui/forms/CustomInput";
 import { IFormRegisterInput } from "@/types/auth";
-import {
-	Box,
-	Container,
-	Flex,
-	HStack,
-	Icon,
-	Stack,
-	Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Icon, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
@@ -17,8 +9,8 @@ export const Footer = () => {
 
 	const {
 		register,
-		handleSubmit,
-		control,
+		// handleSubmit,
+		// control,
 		formState: { errors },
 	} = useForm<IFormRegisterInput>();
 

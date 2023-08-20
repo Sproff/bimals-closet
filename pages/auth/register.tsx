@@ -1,5 +1,5 @@
 import { Box, Image, Stack, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import PhoneInput from "react-phone-input-2";
@@ -15,7 +15,6 @@ import Link from "next/link";
 import { CustomInput } from "@/components/ui/forms/CustomInput";
 import { CustomButton } from "@/components/ui/buttons/CustomButton";
 import { useRouter } from "next/router";
-import withAuth from "../withAuth";
 
 const Register = () => {
 	const [phoneInput, setPhoneInput] = useState("");

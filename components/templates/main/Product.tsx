@@ -15,7 +15,6 @@ import Link from "next/link";
 import { useGetAllProducts } from "@/hooks/products/useProduct";
 import { useState } from "react";
 import { Product } from "@/types/product";
-import { SimilarProduct } from "../product/SimilarProduct";
 
 const Products = () => {
 	const { data: productData } = useGetAllProducts();

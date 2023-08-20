@@ -1,7 +1,5 @@
 import { AuthModalData } from "@/utils/modal";
 import { Box, Flex, HStack, Icon, Text } from "@chakra-ui/react";
-import Link from "next/link";
-import { Fragment } from "react";
 
 const MobileNavbar = () => {
 	return (

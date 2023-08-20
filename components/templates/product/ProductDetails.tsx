@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Fragment, SetStateAction, useEffect, useState } from "react";
+import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiChevronLeft } from "react-icons/bi";
 import { GoHeart } from "react-icons/go";
@@ -38,7 +38,12 @@ const ProductDetails = () => {
 	const { addToCart } = useCartState((state) => state);
 
 	const handleAddToCart = () => {
-		const { _id, name, price, image } = particularProductData?.data?.product;
+		const product = particularProductData?.data?.product;
+		const id = product?._id;
+		const name = product?._name;
+		const price = product?._price;
+		const image = product?._image;
+
 		if (!selectedSize) {
 			return toast({
 				status: "error",
@@ -46,7 +51,7 @@ const ProductDetails = () => {
 			});
 		}
 		const payload = {
-			id: _id,
+			id,
 			name,
 			size: selectedSize,
 			price,
@@ -89,8 +94,8 @@ const ProductDetails = () => {
 							<HStack mt="2rem" spacing="2rem" mx="4rem">
 								{Array(3)
 									.fill(0)
-									.map(() => (
-										<BoxCardLoader rounded=".6rem" h="70px" />
+									.map((idx) => (
+										<BoxCardLoader key={idx} rounded=".6rem" h="70px" />
 									))}
 							</HStack>
 						</Box>
@@ -172,8 +177,8 @@ const ProductDetails = () => {
 								>
 									{Array(5)
 										.fill(0)
-										.map(() => (
-											<Icon cursor="pointer" as={MdOutlineStar} />
+										.map((idx) => (
+											<Icon key={idx} cursor="pointer" as={MdOutlineStar} />
 										))}
 
 									<Text ml="1rem">4.8</Text>

@@ -15,5 +15,6 @@ export type CustomButtonProps = {
 	text: string;
 	btnIcon?: IconType;
 	isLoading?: boolean;
+	isDisabled?: boolean;
 	isBtnIcon?: boolean;
 };

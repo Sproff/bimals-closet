@@ -1,11 +1,6 @@
 import { Box, Stack, Image, Text } from "@chakra-ui/react";
-import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
-// import { useDispatch } from "react-redux";
-// import { getError, loginUser } from "../../redux/actions/authAction";
+// import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import axios from "axios";
 import { useShowToast } from "@/hooks/toast/useShowToast";
 import { useForgotPassword } from "@/hooks/auth/useAuth";
@@ -13,11 +8,10 @@ import Link from "next/link";
 import { CustomInput } from "@/components/ui/forms/CustomInput";
 import { IFormLoginInput } from "@/types/auth";
 import { CustomButton } from "@/components/ui/buttons/CustomButton";
-import { saveLocalStorage } from "@/utils/helpers";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 const ForgotPawword = () => {
-	const router = useRouter();
+	// const router = useRouter();
 	const toast = useShowToast();
 	const { mutateAsync, isLoading } = useForgotPassword();
 

@@ -1,17 +1,9 @@
 import { isAuthenticated } from "@/utils/auth";
 import { useRouter } from "next/router";
-import { ComponentType, FC, useEffect } from "react";
+import { JSX, useEffect } from "react";
 
-type WithAuthProps = {};
-
-type WithAuthComponentProps = WithAuthProps & {
-	// Add any props that your wrapped component receives here
-};
-
-const withAuth = <P extends WithAuthComponentProps>(
-	WrappedComponent: ComponentType<P>
-) => {
-	const AuthenticatedComponent: FC<P> = (props) => {
+const withAuth = (WrappedComponent: any) => {
+	const AuthenticatedComponent = (props: JSX.IntrinsicAttributes) => {
 		const router = useRouter();
 
 		useEffect(() => {
