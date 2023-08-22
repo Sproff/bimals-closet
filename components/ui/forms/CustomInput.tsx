@@ -23,6 +23,7 @@ const CustomInput = ({
 					placeholder={placeholder}
 					type={type}
 					py="2rem"
+					fontSize="1.6rem"
 					isDisabled={isDisabled}
 					_placeholder={{
 						fontWeight: 500,

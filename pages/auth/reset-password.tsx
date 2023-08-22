@@ -90,7 +90,7 @@ const ResetPassword = () => {
 				</Box>
 
 				<Box
-					h="100vh"
+					h={["90vh", "100vh"]}
 					w={["100%", "100%", "50%"]}
 					bg={["#fff"]}
 					display="flex"

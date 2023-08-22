@@ -59,7 +59,7 @@ const Register = () => {
 		<Box>
 			<Stack spacing="0" direction={["column", "column", "row"]}>
 				<Box
-					h="100vh"
+					// h="100vh"
 					w={["100%", "100%", "50%"]}
 					bg="brand.green100"
 					p="2rem"
@@ -89,7 +89,7 @@ const Register = () => {
 				</Box>
 
 				<Box
-					h="100vh"
+					h={["90vh", "100vh"]}
 					w={["100%", "100%", "50%"]}
 					bg="#fff"
 					display="flex"
@@ -168,6 +168,7 @@ const Register = () => {
 												margin: "2rem 0",
 												padding: "2rem 3rem 2rem 4.5rem",
 												width: "100%",
+												fontSize: "1.6rem",
 											}}
 										/>
 									);

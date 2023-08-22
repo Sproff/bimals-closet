@@ -19,7 +19,7 @@ const VerifyPhone = () => {
 				mx="auto"
 				p="2rem"
 				flexDir="column"
-				h="100vh"
+				h={["90vh", "100vh"]}
 				justifyContent="space-between"
 			>
 				<Box>
