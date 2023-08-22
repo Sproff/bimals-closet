@@ -15,25 +15,44 @@ import { getLocalStorage } from "@/utils/helpers";
 import { MobileNavbar } from "@/components/ui/modals/MobileNavbar";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useHydratedCartState } from "@/hooks/state/hydrated";
+import {
+	useHydratedCartState,
+	useHydratedStoreState,
+} from "@/hooks/state/hydrated";
+import { useStoreState } from "@/hooks/state/storage";
+import { useRouter } from "next/router";
 
-export const Header = () => {
+export const Header = ({
+	subHeaderName,
+}: {
+	subHeaderName: string | undefined;
+}) => {
 	const [openDropDown, setOpenDropDown] = useBoolean();
 	const [openCatgories, setOpenCatgories] = useBoolean();
 	const [active, setActive] = useBoolean();
 	const [openModal, setOpenModal] = useBoolean();
 	const [name, setName] = useState<string>("");
 	const cart = useHydratedCartState("cart");
-
-	useEffect(() => {
-		const fullName = getLocalStorage("fullName");
-		setName(fullName as string);
-	}, []);
+	const token = useHydratedStoreState("token");
+	const { removeToken } = useStoreState((state) => state);
+	const router = useRouter();
 
 	const handleToggle = () => {
 		setOpenModal.toggle();
 		setActive.toggle();
 	};
+
+	const handleLogout = () => {
+		removeToken();
+
+		router.push("/auth/login");
+	};
+
+	useEffect(() => {
+		const fullName = getLocalStorage("fullName");
+
+		setName(fullName as string);
+	}, []);
 
 	return (
 		<Box bg="brand.green100" pos="fixed" w="100%" zIndex="99">
@@ -48,7 +67,7 @@ export const Header = () => {
 				>
 					<Box>
 						<Link href="/">
-							<Text fontWeight="700" fontSize={["1.5rem", "2rem"]}>
+							<Text fontWeight="700" fontSize={["1.8rem", "2.5rem"]}>
 								Bimal&apos;s Closet
 							</Text>
 						</Link>
@@ -100,7 +119,7 @@ export const Header = () => {
 
 					<Box display={["none", "flex"]}>
 						<Stack
-							spacing="1rem"
+							spacing="2rem"
 							direction={["row"]}
 							alignItems="center"
 							fontSize="2rem"
@@ -156,7 +175,7 @@ export const Header = () => {
 						</Stack>
 					</Box>
 				</Stack>
-				{openDropDown && <AuthModal />}
+				{openDropDown && <AuthModal {...{ handleLogout, token }} />}
 			</Box>
 
 			<Box bg="brand.white100" shadow="xs">
@@ -175,22 +194,28 @@ export const Header = () => {
 						cursor="pointer"
 						w="max-content"
 					>
-						<Text ml={["3rem", ".2rem"]} fontSize="1.5rem">
-							Categories
-						</Text>
-
-						<Icon
+						<Text
+							ml={["3rem", ".2rem"]}
 							fontSize="1.5rem"
-							color="brand.green100"
-							_groupHover={{
-								color: "brand.white100",
-							}}
-							as={openCatgories ? MdArrowDropUp : MdArrowDropDown}
-						/>
+							color="brand.grey300"
+							fontWeight="600"
+						>
+							{subHeaderName}
+						</Text>
+						{subHeaderName === "Categories" && (
+							<Icon
+								fontSize="1.5rem"
+								color="brand.green100"
+								_groupHover={{
+									color: "brand.white100",
+								}}
+								as={openCatgories ? MdArrowDropUp : MdArrowDropDown}
+							/>
+						)}
 					</Flex>
 				</Box>
 
-				{openModal ? <MobileNavbar /> : null}
+				{openModal ? <MobileNavbar {...{ handleLogout, token }} /> : null}
 				{openCatgories && <CategoriesModal />}
 			</Box>
 		</Box>

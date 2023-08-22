@@ -5,7 +5,7 @@ import { Box } from "@chakra-ui/react";
 const ProductDetail = () => {
 	return (
 		<Box>
-			<MainLayout>
+			<MainLayout {...{ subHeaderName: "Product Details" }}>
 				<ProductDetails />
 				<SimilarProduct />
 			</MainLayout>

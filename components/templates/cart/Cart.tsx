@@ -35,7 +35,7 @@ const CartItems = () => {
 							color="brand.green100"
 							opacity="0.4"
 						/>
-						<Text mt="1rem" fontWeight="300">
+						<Text mt="1rem" fontWeight="300" textAlign="center">
 							Your cart is currently empty. Start adding items now!
 						</Text>
 					</Center>
@@ -70,7 +70,7 @@ const CartItems = () => {
 										fontWeight="600"
 										color="brand.grey300"
 									>
-										₦{item?.price.toFixed(2)}{" "}
+										₦{item?.price?.toFixed(2)}{" "}
 									</Text>
 									<Text
 										ml=".5rem"

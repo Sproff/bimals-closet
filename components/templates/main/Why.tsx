@@ -25,7 +25,7 @@ const Why = () => {
 		},
 	];
 	return (
-		<Box maxW="1280px" mx="auto" my="10rem">
+		<Box maxW="1280px" mx="auto" my="10rem" px="3rem">
 			<Text
 				color="brand.grey300"
 				fontWeight="600"

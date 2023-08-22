@@ -1,5 +1,8 @@
 export type TStoreState = {
 	user: Record<string, any>;
+	token: string | null;
+	setToken: (token: string | null) => void;
+	removeToken: () => void;
 };
 
 export type TCartState = {

@@ -5,6 +5,7 @@ import {
 	forgotPassword,
 	loginUser,
 	registerUser,
+	resetPassword,
 	verifyEmailToken,
 } from "@/queries/auth";
 import { IFormLoginInput, IFormRegisterInput } from "@/types/auth";
@@ -55,6 +56,24 @@ export const useForgotPassword = () => {
 				status: "success",
 				title:
 					"A password reset email has been successfully sent. Please check your inbox for further instructions.",
+			});
+		},
+		onError,
+	});
+};
+
+export const useResetPassword = () => {
+	const queryClient = useQueryClient();
+	const toast = useShowToast();
+
+	return useMutation({
+		mutationFn: (payload: IFormLoginInput) => resetPassword(payload),
+		onSuccess: () => {
+			queryClient.invalidateQueries();
+			toast({
+				status: "success",
+				title:
+					"Password Reset Successful! Your account is now secure with a new password.",
 			});
 		},
 		onError,

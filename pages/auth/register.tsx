@@ -15,6 +15,7 @@ import Link from "next/link";
 import { CustomInput } from "@/components/ui/forms/CustomInput";
 import { CustomButton } from "@/components/ui/buttons/CustomButton";
 import { useRouter } from "next/router";
+import withAuth from "../withAuth";
 
 const Register = () => {
 	const [phoneInput, setPhoneInput] = useState("");
@@ -252,4 +253,4 @@ const Register = () => {
 	);
 };
 
-export default Register;
+export default withAuth(Register);

@@ -1,7 +1,5 @@
 import { IconType } from "react-icons";
-import { AiOutlineShop } from "react-icons/ai";
-import { GiLoincloth, GiRunningShoe, GiTrousers } from "react-icons/gi";
-import { GoHeart } from "react-icons/go";
+import { GiLoincloth, GiTrousers } from "react-icons/gi";
 import { IoMdLogOut } from "react-icons/io";
 import { SiGooglemybusiness } from "react-icons/si";
 import { TiShoppingCart } from "react-icons/ti";
@@ -9,21 +7,24 @@ import { TiShoppingCart } from "react-icons/ti";
 export type AuthModalDataProps = {
 	icon: IconType;
 	text: string;
+	link?: string;
 };
 
 export const AuthModalData: AuthModalDataProps[] = [
 	{
 		icon: TiShoppingCart,
 		text: "Cart",
+		link: "/cart",
 	},
-	{
-		icon: AiOutlineShop,
-		text: "Order",
-	},
-	{
-		icon: GoHeart,
-		text: "Wishlist",
-	},
+	// {
+	// 	icon: AiOutlineShop,
+	// 	text: "Order",
+	// },
+	// {
+	// 	icon: GoHeart,
+	// 	text: "Wishlist",
+	// 	link: ""
+	// },
 	{
 		icon: IoMdLogOut,
 		text: "Logout",
@@ -43,8 +44,8 @@ export const CategoriesModalData: AuthModalDataProps[] = [
 		icon: GiTrousers,
 		text: "Men",
 	},
-	{
-		icon: GiRunningShoe,
-		text: "Shoes",
-	},
+	// {
+	// 	icon: GiRunningShoe,
+	// 	text: "Shoes",
+	// },
 ];

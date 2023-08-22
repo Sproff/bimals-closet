@@ -1,6 +1,9 @@
 export type IFormLoginInput = {
-	email: string;
+	email?: string;
 	password?: string;
+	newPassword?: string;
+	confirmPassword?: string;
+	code?: string;
 };
 
 export type IFormRegisterInput = {

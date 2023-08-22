@@ -39,10 +39,11 @@ const ProductDetails = () => {
 
 	const handleAddToCart = () => {
 		const product = particularProductData?.data?.product;
+
 		const id = product?._id;
-		const name = product?._name;
-		const price = product?._price;
-		const image = product?._image;
+		const name = product?.name;
+		const price = product?.price;
+		const image = product?.image;
 
 		if (!selectedSize) {
 			return toast({
@@ -55,7 +56,7 @@ const ProductDetails = () => {
 			name,
 			size: selectedSize,
 			price,
-			image: image[0],
+			image: image?.[0],
 		};
 		addToCart(payload);
 		toast({
@@ -94,7 +95,7 @@ const ProductDetails = () => {
 							<HStack mt="2rem" spacing="2rem" mx="4rem">
 								{Array(3)
 									.fill(0)
-									.map((idx) => (
+									.map((_, idx) => (
 										<BoxCardLoader key={idx} rounded=".6rem" h="70px" />
 									))}
 							</HStack>
@@ -177,7 +178,7 @@ const ProductDetails = () => {
 								>
 									{Array(5)
 										.fill(0)
-										.map((idx) => (
+										.map((_, idx) => (
 											<Icon key={idx} cursor="pointer" as={MdOutlineStar} />
 										))}
 

@@ -7,7 +7,9 @@ export const useStoreState = create<TStoreState>()(
 		persist(
 			(set) => ({
 				user: {},
-				updateUser: (payload: any) => set({ user: payload }),
+				token: null,
+				setToken: (token) => set({ token }),
+				removeToken: () => set({ token: null }),
 			}),
 			{
 				name: "__bimals_closet_store_data__",

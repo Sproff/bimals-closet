@@ -90,7 +90,7 @@ const SimilarProduct = () => {
 											src={product?.image[0]}
 											width={300}
 											height={200}
-											objectFit="cover"
+											// objectFit="cover"
 											alt="Product Image"
 										/>
 

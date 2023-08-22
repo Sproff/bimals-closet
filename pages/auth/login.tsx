@@ -1,11 +1,7 @@
 import { Box, Stack, Image, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
-// import { useDispatch } from "react-redux";
-// import { getError, loginUser } from "../../redux/actions/authAction";
 import axios from "axios";
 import { useShowToast } from "@/hooks/toast/useShowToast";
 import { useLoginUser } from "@/hooks/auth/useAuth";
@@ -16,12 +12,14 @@ import { CustomButton } from "@/components/ui/buttons/CustomButton";
 import { saveLocalStorage } from "@/utils/helpers";
 import { useRouter } from "next/router";
 import withAuth from "../withAuth";
+import { useStoreState } from "@/hooks/state/storage";
 
 const Login = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const router = useRouter();
 	const toast = useShowToast();
 	const { mutateAsync, isLoading } = useLoginUser();
+	const { setToken } = useStoreState((state) => state);
 
 	const {
 		register,
@@ -32,13 +30,12 @@ const Login = () => {
 	const onSubmit: SubmitHandler<IFormLoginInput> = async (data) => {
 		try {
 			const res = await mutateAsync(data);
-			console.log("res", res);
 			setTimeout(() => {
 				saveLocalStorage(res?.data?.user?.fullName, "fullName");
-				saveLocalStorage(res?.data?.token, "bc-token");
+				setToken(res?.data?.token);
 
 				router.push("/");
-			}, 300);
+			}, 50);
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
 				toast({

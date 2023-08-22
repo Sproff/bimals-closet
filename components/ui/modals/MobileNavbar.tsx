@@ -1,7 +1,15 @@
 import { AuthModalData } from "@/utils/modal";
 import { Box, Flex, HStack, Icon, Text } from "@chakra-ui/react";
+import Link from "next/link";
+import { Fragment } from "react";
 
-const MobileNavbar = () => {
+const MobileNavbar = ({
+	handleLogout,
+	token,
+}: {
+	handleLogout: () => void;
+	token: string | null;
+}) => {
 	return (
 		<Box
 			bg="brand.dark100"
@@ -29,37 +37,76 @@ const MobileNavbar = () => {
 					fontWeight="500"
 					spacing={0}
 				>
-					{AuthModalData.map((item, idx) => (
-						<Flex
-							key={idx}
-							role="group"
-							alignItems="center"
-							cursor="pointer"
-							p=".9rem 1.5rem"
-							_hover={{
-								bg: "brand.green100",
-								color: "brand.white100",
-								borderRadius: ".4rem",
-							}}
-						>
-							<Icon
-								color="brand.green100"
-								_groupHover={{
-									color: "brand.white100",
-								}}
-								as={item.icon}
-							/>
+					{AuthModalData.map((item, idx) => {
+						return (
+							<Fragment key={idx}>
+								{item.link ? (
+									<Box w="max-content">
+										<Link href={item.link}>
+											<Flex
+												alignItems="center"
+												role="group"
+												cursor="pointer"
+												p=".9rem 1.5rem"
+												_hover={{
+													bg: "brand.green100",
+													color: "brand.white100",
+													borderRadius: ".4rem",
+												}}
+											>
+												<Icon
+													color="brand.green100"
+													_groupHover={{
+														color: "brand.white100",
+													}}
+													as={item.icon}
+												/>
 
-							<Text
-								ml=".8rem"
-								fontSize="1.4rem"
-								display="flex"
-								alignItems="center"
-							>
-								{item.text}
-							</Text>
-						</Flex>
-					))}
+												<Text
+													ml=".8rem"
+													fontSize="1.4rem"
+													display="flex"
+													alignItems="center"
+												>
+													{item.text === "Logout" && token === null
+														? "Login"
+														: item.text}
+												</Text>
+											</Flex>
+										</Link>
+									</Box>
+								) : (
+									<Box w="max-content">
+										<Flex
+											alignItems="center"
+											cursor="pointer"
+											p=".9rem 1.5rem"
+											onClick={handleLogout}
+										>
+											<Icon
+												color="brand.green100"
+												_groupHover={{
+													color: "brand.white100",
+												}}
+												as={item.icon}
+											/>
+
+											<Text
+												ml=".8rem"
+												fontSize="1.4rem"
+												display="flex"
+												alignItems="center"
+											>
+												{item.text === "Logout" && token === null
+													? "Login"
+													: item.text}
+											</Text>
+										</Flex>
+									</Box>
+								)}
+							</Fragment>
+						);
+					})}
 				</HStack>
 			</Box>
 		</Box>

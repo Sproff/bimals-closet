@@ -19,6 +19,12 @@ export const forgotPassword = async (payload: IFormLoginInput) => {
 	return data;
 };
 
+export const resetPassword = async (payload: IFormLoginInput) => {
+	const { data } = await AxiosInstance.post("/user/reset-password", payload);
+
+	return data;
+};
+
 export const verifyEmailToken = async (verificationToken: string) => {
 	const { data } = await AxiosInstance.get(`/user/verify/${verificationToken}`);
 

@@ -6,12 +6,13 @@ import { Footer } from "./Footer";
 
 type childrenProps = {
 	children: React.ReactNode;
+	subHeaderName?: string;
 };
 
-const MainLayout = ({ children }: childrenProps) => {
+const MainLayout = ({ children, subHeaderName }: childrenProps) => {
 	return (
 		<Box>
-			<Header />
+			<Header {...{ subHeaderName }} />
 			{children}
 			<Footer />
 		</Box>

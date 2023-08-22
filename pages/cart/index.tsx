@@ -5,7 +5,7 @@ import { Box } from "@chakra-ui/react";
 const Cart = () => {
 	return (
 		<Box>
-			<MainLayout>
+			<MainLayout {...{ subHeaderName: "Shopping Cart" }}>
 				<CartItems />
 			</MainLayout>
 		</Box>
