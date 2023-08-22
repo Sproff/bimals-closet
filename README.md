@@ -22,7 +22,7 @@ This project will be updated on a regular basis. Feel free to make a Pull Reques
 - [x] Order Placing
 - [ ] Checkout (using Paystack)
 - [ ] SMS Verification
-- [ ] Wishlist
+- [ ] Wishlist / Favourite
 - [ ] Order Tracking
 - [ ] Order Cancelation
 
