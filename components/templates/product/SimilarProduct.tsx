@@ -58,7 +58,7 @@ const SimilarProduct = () => {
 				{shuffledProducts?.slice(0, 4).map((product: Product) => (
 					<Fragment key={product?._id}>
 						{isLoadingProductData ? (
-							<BoxCardLoader rounded=".6rem" h="300px" />
+							<BoxCardLoader rounded=".6rem" h={["230px", "300px"]} />
 						) : (
 							<Box pos="relative" cursor="pointer">
 								<Circle

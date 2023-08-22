@@ -60,12 +60,22 @@ const Products = () => {
 					</Flex>
 
 					<SimpleGrid columns={[2, 3, 3, 4]} gap="2rem" mt="1rem">
-						{productData?.data?.products?.map((product: Product) => (
-							<Fragment key={product?._id}>
-								{isLoadingProductData ? (
-									<BoxCardLoader rounded=".6rem" h="300px" />
-								) : (
-									<Box pos="relative" cursor="pointer">
+						{isLoadingProductData ? (
+							<Fragment>
+								{Array(4)
+									.fill(0)
+									.map((_, idx) => (
+										<BoxCardLoader
+											key={idx}
+											rounded=".6rem"
+											h={["230px", "300px"]}
+										/>
+									))}
+							</Fragment>
+						) : (
+							<Fragment>
+								{productData?.data?.products?.map((product: Product) => (
+									<Box key={product?._id} pos="relative" cursor="pointer">
 										<Circle
 											bg="brand.white100"
 											p=".5rem"
@@ -141,9 +151,9 @@ const Products = () => {
 											</Box>
 										</Link>
 									</Box>
-								)}
+								))}
 							</Fragment>
-						))}
+						)}
 					</SimpleGrid>
 
 					{/* <Box textAlign="center">

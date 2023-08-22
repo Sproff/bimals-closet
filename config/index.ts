@@ -1,7 +1,8 @@
+import { getBaseUrl } from "@/utils/environment";
 import axios from "axios";
 
 export const AxiosInstance = axios.create({
-	baseURL: process.env.NEXT_PUBLIC_PROD_BASE_URL,
+	baseURL: getBaseUrl(),
 	headers: {
 		"Content-Type": "application/json",
 	},
