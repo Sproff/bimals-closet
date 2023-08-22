@@ -1,7 +1,9 @@
+import { useHydratedStoreState } from "@/hooks/state/hydrated";
 import { Box, Button, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
 export const Hero = () => {
+	const token = useHydratedStoreState("token");
 	return (
 		<Box
 			bgImage="url('/assets/images/hero-bg.png')"
@@ -41,7 +43,7 @@ export const Hero = () => {
 							boxShadow: "none",
 						}}
 					>
-						Join us now
+						{token ? "Explore" : "Join us now"}
 					</Button>
 				</Link>
 			</Box>
