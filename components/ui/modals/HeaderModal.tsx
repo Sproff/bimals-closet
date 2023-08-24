@@ -28,7 +28,7 @@ const AuthModal = ({
 					return (
 						<Fragment key={idx}>
 							{item.link ? (
-								<Box w="max-content">
+								<Box w={["max-content", "100%"]}>
 									<Link href={item.link}>
 										<Flex
 											alignItems="center"
