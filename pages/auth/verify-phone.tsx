@@ -61,8 +61,8 @@ const VerifyPhone = () => {
 							letterSpacing="0.02rem"
 							color="brand.white100"
 						>
-							Please enter 4-digit code sent to <b>08144843697</b> to verify
-							your phone number.
+							Please enter the 4-digit code sent to <b>you</b> to verify your
+							phone number.
 						</Text>
 
 						<OtpInput
