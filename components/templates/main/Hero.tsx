@@ -31,7 +31,7 @@ export const Hero = () => {
 							outfit tells a story.
 						</Text>
 					</Box>
-					<Link href="/auth/login">
+					<Link href={token ? "" : "/auth/login"}>
 						<Button
 							bg="brand.green100"
 							color="brand.white100"
