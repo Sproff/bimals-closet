@@ -20,9 +20,9 @@ This project will be updated on a regular basis. Feel free to make a Pull Reques
 - [x] Authentication
 - [x] Cart Implementation
 - [x] Order Placing
+- [x] Wishlist / Favourite
 - [ ] Checkout (using Paystack)
 - [ ] SMS Verification
-- [ ] Wishlist / Favourite
 - [ ] Order Tracking
 - [ ] Order Cancelation
 
