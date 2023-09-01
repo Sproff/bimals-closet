@@ -49,3 +49,15 @@ export const TextLoader = ({
 		/>
 	);
 };
+
+export const RectangularCardLoader = ({
+	rounded = "2.4rem",
+	h = "300px",
+	mt,
+}: {
+	rounded: string;
+	h?: string | string[];
+	mt?: string;
+}) => {
+	return <Skeleton w="100%" h={h} mt={mt} {...{ rounded }} />;
+};

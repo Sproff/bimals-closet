@@ -5,6 +5,7 @@ import {
 	Center,
 	Flex,
 	Heading,
+	Icon,
 	Image,
 	Text,
 	useBoolean,
@@ -83,14 +84,16 @@ const VerifyEmail = () => {
 						) : (
 							<Box>
 								<Center fontSize="4rem" maxW="330px" mx="auto" mt="2rem">
-									<Box as="span" color="brand.green100">
-										<IoMdCheckmarkCircle />
-									</Box>
+									<Icon
+										color="brand.green100"
+										fontSize="3rem"
+										as={IoMdCheckmarkCircle}
+									/>
 									<Text
-										m="1rem auto"
-										w={["100%", "100%", "450px"]}
-										fontSize={["1.5rem", "1.5rem", "1.8rem", "2rem"]}
-										fontWeight="400"
+										m=".5rem"
+										// w={["100%", "100%", "450px"]}
+										fontSize={["1.8rem", "1.5rem", "1.8rem", "2rem"]}
+										fontWeight="300"
 										letterSpacing="0.02rem"
 									>
 										Email Verification Successful

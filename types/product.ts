@@ -4,6 +4,7 @@ export type Product = {
 	slug: string;
 	image: string;
 	price: number;
+	isFavorite: boolean;
 };
 
 export type ProductListProps = {

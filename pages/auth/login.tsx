@@ -33,6 +33,7 @@ const Login = () => {
 			setTimeout(() => {
 				saveLocalStorage(res?.data?.user?.fullName, "fullName");
 				setToken(res?.data?.token);
+				sessionStorage.setItem("userId", JSON.stringify(res?.data?.user?._id));
 
 				router.push("/");
 			}, 50);

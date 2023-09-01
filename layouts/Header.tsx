@@ -54,6 +54,8 @@ export const Header = ({
 		setName(fullName as string);
 	}, []);
 
+	console.log("subHeaderName", subHeaderName);
+
 	return (
 		<Box bg="brand.green100" pos="fixed" w="100%" zIndex="99">
 			<Box maxW="1280px" mx="auto" p="2rem 0 0 0">
@@ -216,7 +218,9 @@ export const Header = ({
 				</Box>
 
 				{openModal ? <MobileNavbar {...{ handleLogout, token }} /> : null}
-				{openCatgories && <CategoriesModal />}
+				{openCatgories && subHeaderName === "Categories" ? (
+					<CategoriesModal />
+				) : null}
 			</Box>
 		</Box>
 	);

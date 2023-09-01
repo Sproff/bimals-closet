@@ -1,32 +1,28 @@
 import { Box, Circle, Flex, Icon, SimpleGrid, Text } from "@chakra-ui/react";
-
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { MdOutlineStarBorder } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 import { useGetAllProducts } from "@/hooks/products/useProduct";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Product } from "@/types/product";
 import { BoxCardLoader } from "@/components/animations/CustomLoader";
+
+import { useToggleFavorite } from "@/hooks/favorite/useToggleFavorite";
 
 const Products = () => {
 	const { data: productData, isLoading: isLoadingProductData } =
 		useGetAllProducts();
-	const [checkedProducts, setCheckedProducts] = useState<string[]>([]);
 
-	const isProductChecked = (productId: string) => {
-		return checkedProducts.includes(productId);
-	};
+	const mapProducts = productData?.data?.products?.map((item: Product) => {
+		const res = {
+			...item,
+		};
+		return res;
+	});
 
-	const toggleProductChecked = (productId: string) => {
-		setCheckedProducts((prevCheckedProducts) => {
-			if (isProductChecked(productId)) {
-				return prevCheckedProducts.filter((id) => id !== productId);
-			} else {
-				return [...prevCheckedProducts, productId];
-			}
-		});
-	};
+	const { toggleProductChecked, isProductChecked } =
+		useToggleFavorite(mapProducts);
 
 	return (
 		<Box
