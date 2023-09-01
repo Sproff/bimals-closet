@@ -20,7 +20,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiChevronLeft } from "react-icons/bi";
-import { GoHeart } from "react-icons/go";
+import { GoHeart, GoHeartFill } from "react-icons/go";
 import { MdOutlineStar } from "react-icons/md";
 
 const ProductDetails = () => {
@@ -187,9 +187,17 @@ const ProductDetails = () => {
 
 								<Icon
 									cursor="pointer"
-									color="brand.grey400"
+									color={
+										particularProductData?.data?.product?.isFavorite
+											? "brand.red100"
+											: "brand.grey400"
+									}
 									fontSize="2rem"
-									as={GoHeart}
+									as={
+										particularProductData?.data?.product?.isFavorite
+											? GoHeartFill
+											: GoHeart
+									}
 								/>
 							</Flex>
 

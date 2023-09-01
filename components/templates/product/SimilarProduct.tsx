@@ -1,4 +1,5 @@
 import { BoxCardLoader } from "@/components/animations/CustomLoader";
+import { useToggleFavorite } from "@/hooks/favorite/useToggleFavorite";
 import { useGetAllProducts } from "@/hooks/products/useProduct";
 import { Product } from "@/types/product";
 import { Box, Circle, Flex, Icon, SimpleGrid, Text } from "@chakra-ui/react";
@@ -11,23 +12,17 @@ import { MdOutlineStarBorder } from "react-icons/md";
 const SimilarProduct = () => {
 	const { data: productData, isLoading: isLoadingProductData } =
 		useGetAllProducts();
-
-	const [checkedProducts, setCheckedProducts] = useState<string[]>([]);
 	const [shuffledProducts, setShuffledProducts] = useState<Product[]>([]);
 
-	const isProductChecked = (productId: string) => {
-		return checkedProducts.includes(productId);
-	};
+	const mapProducts = productData?.data?.products?.map((item: Product) => {
+		const res = {
+			...item,
+		};
+		return res;
+	});
 
-	const toggleProductChecked = (productId: string) => {
-		setCheckedProducts((prevCheckedProducts) => {
-			if (isProductChecked(productId)) {
-				return prevCheckedProducts.filter((id) => id !== productId);
-			} else {
-				return [...prevCheckedProducts, productId];
-			}
-		});
-	};
+	const { toggleProductChecked, isProductChecked } =
+		useToggleFavorite(mapProducts);
 
 	const shuffleArray = (array: Product[]) => {
 		const shuffledArray = [...array];
