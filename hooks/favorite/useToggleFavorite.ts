@@ -18,13 +18,14 @@ const useToggleFavorite = (mapProducts: MapProduct[]) => {
 	const { mutateAsync: removeMutateAsync } = useRemoveFavorite();
 	const [userId, setUserId] = useState("");
 
-	// const jwtToken = process.env.NEXT_PUBLIC_JWT_TOKEN;
-
 	useEffect(() => {
-		const storedUser = sessionStorage.getItem("userId");
-		const id = storedUser ? JSON.parse(storedUser) : null;
+		const storedUser = sessionStorage.getItem("user");
+		const user = storedUser ? JSON.parse(storedUser) : null;
+		const id = user ? user.id : null;
+
 		setUserId(id);
 	}, [userId]);
+
 	const isProductChecked = (productId: string) => {
 		const isChecked = mapProducts?.some(
 			(item) => item?._id === productId && item.isFavorite

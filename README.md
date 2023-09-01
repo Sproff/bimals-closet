@@ -21,7 +21,7 @@ This project will be updated on a regular basis. Feel free to make a Pull Reques
 - [x] Cart Implementation
 - [x] Order Placing
 - [x] Wishlist
-- [ ] Checkout (using Paystack)
+- [x] Checkout (using Paystack)
 - [ ] SMS Verification
 - [ ] Order Tracking
 - [ ] Order Cancelation

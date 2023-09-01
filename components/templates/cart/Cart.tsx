@@ -1,24 +1,73 @@
 import { CustomButton } from "@/components/ui/buttons/CustomButton";
-import { useHydratedCartState } from "@/hooks/state/hydrated";
+import {
+	useHydratedCartState,
+	useHydratedStoreState,
+} from "@/hooks/state/hydrated";
 import { useCartState } from "@/hooks/state/storage";
+import { useShowToast } from "@/hooks/toast/useShowToast";
+import { CheckoutProps } from "@/types/cart";
 import { Box, Center, Flex, Icon, Img, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { AiFillPlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { BiChevronLeft } from "react-icons/bi";
 import { FaGhost } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { usePaystackPayment } from "react-paystack";
 
 const CartItems = () => {
 	const cart = useHydratedCartState("cart");
+	const token = useHydratedStoreState("token");
 	const { quantityCount, removeFromCart, emptyCart } = useCartState(
 		(state) => state
 	);
 	const router = useRouter();
+	const toast = useShowToast();
+	const [userEmail, setUserEmail] = useState("");
 
 	const totalCartPrice = cart?.reduce((total, item) => {
 		const itemTotal = item.price * item.quantity;
 		return total + itemTotal;
 	}, 0);
+
+	const convertTotalAmountToKobo = totalCartPrice * 100;
+
+	// Paystack Integration
+	const config: CheckoutProps = {
+		reference: new Date().getTime().toString(),
+		email: userEmail,
+		amount: convertTotalAmountToKobo,
+		publicKey: process.env.NEXT_PUBLIC_PAYSTACK_LIVE_KEY ?? "",
+	};
+
+	const initializePayment = usePaystackPayment(config);
+
+	const checkToken = () => {
+		if (!token) {
+			return toast({
+				status: "error",
+				title:
+					"Please log in to proceed with checkout. Your secure shopping experience is just a login away!",
+			});
+		}
+
+		initializePayment(onSuccess);
+	};
+
+	const onSuccess = () => {
+		toast({
+			status: "success",
+			title: `Your purchase was successful! Transaction reference: ${config?.reference}`,
+		});
+	};
+
+	useEffect(() => {
+		const storedUser = sessionStorage.getItem("user");
+		const user = storedUser ? JSON.parse(storedUser) : null;
+		const email = user ? user.email : null;
+
+		setUserEmail(email);
+	}, [userEmail]);
 
 	return (
 		<Box pt="15rem" pb="5rem">
@@ -148,7 +197,7 @@ const CartItems = () => {
 					<Box overflow="hidden" borderRadius="1rem">
 						<Text fontWeight="600">Total Items</Text>
 						<Text textAlign="center">{cart?.length}</Text>
-						<Box>
+						<Box onClick={checkToken}>
 							<CustomButton
 								{...{
 									text: "Checkout",

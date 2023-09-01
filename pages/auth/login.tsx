@@ -31,9 +31,15 @@ const Login = () => {
 		try {
 			const res = await mutateAsync(data);
 			setTimeout(() => {
-				saveLocalStorage(res?.data?.user?.fullName, "fullName");
 				setToken(res?.data?.token);
-				sessionStorage.setItem("userId", JSON.stringify(res?.data?.user?._id));
+				sessionStorage.setItem(
+					"user",
+					JSON.stringify({
+						name: res?.data?.user?.fullName,
+						id: res?.data?.user?._id,
+						email: res?.data?.user?.email,
+					})
+				);
 
 				router.push("/");
 			}, 50);

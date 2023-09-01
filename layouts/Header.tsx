@@ -49,12 +49,12 @@ export const Header = ({
 	};
 
 	useEffect(() => {
-		const fullName = getLocalStorage("fullName");
+		const storedUser = sessionStorage.getItem("user");
+		const user = storedUser ? JSON.parse(storedUser) : null;
+		const fullName = user ? user.name : null;
 
-		setName(fullName as string);
-	}, []);
-
-	console.log("subHeaderName", subHeaderName);
+		setName(fullName);
+	}, [name]);
 
 	return (
 		<Box bg="brand.green100" pos="fixed" w="100%" zIndex="99">
