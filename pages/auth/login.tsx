@@ -9,7 +9,6 @@ import Link from "next/link";
 import { CustomInput } from "@/components/ui/forms/CustomInput";
 import { IFormLoginInput } from "@/types/auth";
 import { CustomButton } from "@/components/ui/buttons/CustomButton";
-import { saveLocalStorage } from "@/utils/helpers";
 import { useRouter } from "next/router";
 import withAuth from "../withAuth";
 import { useStoreState } from "@/hooks/state/storage";

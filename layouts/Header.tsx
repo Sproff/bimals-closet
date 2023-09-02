@@ -11,7 +11,6 @@ import { BiUserCircle, BiSearch } from "react-icons/bi";
 import { TiShoppingCart } from "react-icons/ti";
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
 import { AuthModal, CategoriesModal } from "@/components/ui/modals";
-import { getLocalStorage } from "@/utils/helpers";
 import { MobileNavbar } from "@/components/ui/modals/MobileNavbar";
 import { useEffect, useState } from "react";
 import Link from "next/link";
