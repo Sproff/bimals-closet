@@ -50,6 +50,8 @@ const ResetPassword = () => {
 			}
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
+				console.log("error", error);
+
 				toast({
 					status: "error",
 					title:
